@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+
+// Pages
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+// Pages - Warehouse
+import WarehouseHome from "./pages/Warehouse/WarehouseHome";
+import WarehouseDetail from "./pages/Warehouse/WarehouseDetail";
+import WarehouseEdit from "./pages/Warehouse/WarehouseEdit";
+import WarehouseCreate from "./pages/Warehouse/WarehouseCreate";
+// Pages - Inventory
+import InventoryHome from "./pages/Inventory/InventoryHome";
+import InventoryDetail from "./pages/Inventory/InventoryDetail";
+import InventoryEdit from "./pages/Inventory/InventoryEdit";
+import InventoryCreate from "./pages/Inventory/InventoryCreate";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path={"/"} element={<Home />} />
+        <Route path={"/warehouse"} element={<WarehouseHome />} />
+        <Route path={"/warehouse/create"} element={<WarehouseCreate />} />
+        <Route path={"/warehouse/:warehouseID"} element={<WarehouseDetail />} />
+        <Route
+          path={"/warehouse/edit/:warehouseID"}
+          element={<WarehouseEdit />}
+        />
+        <Route path={"/inventory"} element={<InventoryHome />} />
+        <Route path={"/inventory/create"} element={<InventoryCreate />} />
+        <Route path={"/inventory/:inventoryID"} element={<InventoryDetail />} />
+        <Route
+          path={"/inventory/edit/:inventoryID"}
+          element={<InventoryEdit />}
+        />
+        <Route path={"*"} element={<NotFound />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
