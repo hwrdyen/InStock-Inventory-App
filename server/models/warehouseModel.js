@@ -6,12 +6,35 @@ const warehouseSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    address: String,
+    address: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    country: {
+      type: String,
+      required: true,
+    },
     contact: {
-      name: String,
-      position: String,
-      phone: Number,
-      email: String,
+      name: {
+        type: String,
+        required: true,
+      },
+      position: {
+        type: String,
+        required: true,
+      },
+      phone: {
+        type: Number,
+        required: true,
+      },
+      email: {
+        type: String,
+        required: true,
+      },
     },
   },
   { timestamp: true }
