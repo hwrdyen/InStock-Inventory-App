@@ -1,11 +1,14 @@
 import { NavLink } from "react-router-dom";
 
+// Assets
+import InStock_Logo from "../../assets/Logo/InStock-Logo.svg";
+
 function NavBar() {
   return (
     <>
       <div>
         <NavLink to={"/"}>
-          <div>InStock</div>
+          <img src={InStock_Logo} />
         </NavLink>
 
         <NavLink to={"/warehouse"}>

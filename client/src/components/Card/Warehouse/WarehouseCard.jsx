@@ -1,5 +1,9 @@
 import { NavLink } from "react-router-dom";
 
+// Assets
+import EditIcon from "../../../assets/Icons/edit-24px.svg";
+import DeleteIcon from "../../../assets/Icons/delete_outline-24px.svg";
+
 function WarehouseCard({ SingleWarehouseInfo }) {
   return (
     <>
@@ -9,8 +13,9 @@ function WarehouseCard({ SingleWarehouseInfo }) {
         <h3>{SingleWarehouseInfo?.name}</h3>
       </NavLink>
 
+      <img src={DeleteIcon} alt="Delete Icon" />
       <NavLink to={`/warehouse/edit/${SingleWarehouseInfo?._id}`}>
-        <h3>Edit</h3>
+        <img src={EditIcon} alt="Edit Icon" />
       </NavLink>
     </>
   );

@@ -3,18 +3,23 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 
+// Assets
+import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
+
 function InventoryCreate() {
   const navigate = useNavigate();
 
   return (
     <>
       <NavBar />
-      <div
+      <img
         onClick={(e) => {
           e.preventDefault();
           navigate("/inventory");
         }}
-      >{`---back to previous page (holder)---`}</div>
+        src={ArrowBack}
+        alt="Back Arrow"
+      />
 
       <h1>Add New Inventory Item</h1>
 

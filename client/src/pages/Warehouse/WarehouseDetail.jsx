@@ -8,6 +8,9 @@ import Footer from "../../components/Footer/Footer";
 import Spinner from "../../components/Spinner/Spinner";
 import WarehouseInventoryCardList from "../../components/CardList/Warehouse/WarehouseInventoryCardList/WarehouseInventoryCardList";
 
+// Assets
+import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
+
 function WarehouseDetail() {
   const { warehouseID } = useParams();
   const navigate = useNavigate();
@@ -43,12 +46,14 @@ function WarehouseDetail() {
   return (
     <>
       <NavBar />
-      <div
+      <img
         onClick={(e) => {
           e.preventDefault();
           navigate("/warehouse");
         }}
-      >{`---back to previous page (holder)---`}</div>
+        src={ArrowBack}
+        alt="Back Arrow"
+      />
 
       <h1>This is WarehouseDetail for {warehouseID}</h1>
       <h1>Warehouse Info: </h1>

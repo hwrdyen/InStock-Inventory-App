@@ -1,5 +1,9 @@
 import { NavLink } from "react-router-dom";
 
+// Assets
+import EditIcon from "../../../assets/Icons/edit-24px.svg";
+import DeleteIcon from "../../../assets/Icons/delete_outline-24px.svg";
+
 function InventoryCard({ SingleInventoryInfo }) {
   return (
     <>
@@ -8,7 +12,11 @@ function InventoryCard({ SingleInventoryInfo }) {
       <NavLink to={`/inventory/${SingleInventoryInfo?._id}`}>
         <div>{SingleInventoryInfo?.name}</div>
       </NavLink>
-      <NavLink to={`/inventory/edit/${SingleInventoryInfo?._id}`}>Edit</NavLink>
+
+      <img src={DeleteIcon} alt="Delete Icon" />
+      <NavLink to={`/inventory/edit/${SingleInventoryInfo?._id}`}>
+        <img src={EditIcon} alt="Edit Icon" />
+      </NavLink>
     </>
   );
 }

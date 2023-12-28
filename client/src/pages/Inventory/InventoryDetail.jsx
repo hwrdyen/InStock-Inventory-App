@@ -7,6 +7,9 @@ import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import Spinner from "../../components/Spinner/Spinner";
 
+// Assets
+import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
+
 function InventoryDetail() {
   const { inventoryID } = useParams();
   const navigate = useNavigate();
@@ -31,12 +34,14 @@ function InventoryDetail() {
   return (
     <>
       <NavBar />
-      <div
+      <img
         onClick={(e) => {
           e.preventDefault();
           navigate("/inventory");
         }}
-      >{`---back to previous page (holder)---`}</div>
+        src={ArrowBack}
+        alt="Back Arrow"
+      />
       <h1>This is InventoryDetail! {inventoryID}</h1>
       <div>
         <h1>Inventory Detail: </h1>
