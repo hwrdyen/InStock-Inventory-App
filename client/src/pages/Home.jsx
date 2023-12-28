@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
       <NavBar />
-      <h1>This is Home</h1>
+      <div>This is Home</div>
       <Footer />
     </>
   );

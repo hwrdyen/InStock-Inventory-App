@@ -1,7 +1,7 @@
 function Spinner() {
   return (
     <>
-      <h1>This is Spinner</h1>
+      <div>This is Spinner</div>
     </>
   );
 }

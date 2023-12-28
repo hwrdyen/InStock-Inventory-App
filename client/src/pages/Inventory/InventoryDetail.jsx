@@ -42,19 +42,19 @@ function InventoryDetail() {
         src={ArrowBack}
         alt="Back Arrow"
       />
-      <h1>This is InventoryDetail! {inventoryID}</h1>
+      <div>This is InventoryDetail! {inventoryID}</div>
       <div>
-        <h1>Inventory Detail: </h1>
+        <div>Inventory Detail: </div>
         <div>
           {Loading ? (
             <Spinner />
           ) : (
             <>
-              <h1>{SingleInventoryInfo?.name}</h1>
+              <div>{SingleInventoryInfo?.name}</div>
               <NavLink to={`/inventory/edit/${SingleInventoryInfo?._id}`}>
                 Edit
               </NavLink>
-              <h1>{SingleInventoryInfo?.description}</h1>
+              <div>{SingleInventoryInfo?.description}</div>
             </>
           )}
         </div>

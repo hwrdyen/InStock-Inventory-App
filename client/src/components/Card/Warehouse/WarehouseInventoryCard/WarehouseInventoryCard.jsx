@@ -7,9 +7,9 @@ import DeleteIcon from "../../../../assets/Icons/delete_outline-24px.svg";
 function WarehouseInventoryCard({ WarehouseInventoryInfo }) {
   return (
     <>
-      <h1>This is WarehouseInventoryCard</h1>
+      <div>This is WarehouseInventoryCard</div>
       <NavLink to={`/inventory/${WarehouseInventoryInfo?._id}`}>
-        <h1>{WarehouseInventoryInfo?.name}</h1>
+        <div>{WarehouseInventoryInfo?.name}</div>
       </NavLink>
 
       <img src={DeleteIcon} alt="Delete Icon" />

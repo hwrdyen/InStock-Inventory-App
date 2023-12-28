@@ -5,7 +5,7 @@ import axios from "axios";
 function WarehouseInventoryCardList({ WarehouseInventoriesInfo }) {
   return (
     <>
-      <h1> This is InventoryList inside WarehouseDetail: </h1>
+      <div> This is InventoryList inside WarehouseDetail: </div>
       <div>
         {WarehouseInventoriesInfo.map((WarehouseInventoryInfo) => (
           <WarehouseInventoryCard

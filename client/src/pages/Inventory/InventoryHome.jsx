@@ -29,8 +29,8 @@ function InventoryHome() {
   return (
     <>
       <NavBar />
-      <h1>This is InventoryHome</h1>
-      <h2>InventoryCardList:</h2>
+      <div>This is InventoryHome</div>
+      <div>InventoryCardList:</div>
       <div>
         {Loading ? (
           <Spinner />

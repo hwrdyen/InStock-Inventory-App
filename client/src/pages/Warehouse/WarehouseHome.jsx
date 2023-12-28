@@ -28,8 +28,8 @@ function WarehouseHome() {
   return (
     <>
       <NavBar />
-      <h1>This is WarehouseHome</h1>
-      <h2>WarehouseCardList: </h2>
+      <div>This is WarehouseHome</div>
+      <div>WarehouseCardList: </div>
       <div>
         {Loading ? (
           <Spinner />

@@ -1,7 +1,7 @@
 function InventoryModal() {
   return (
     <>
-      <h1>This is InventoryModal</h1>
+      <div>This is InventoryModal</div>
     </>
   );
 }

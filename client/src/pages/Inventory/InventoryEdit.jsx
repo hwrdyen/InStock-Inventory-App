@@ -16,6 +16,14 @@ function InventoryEdit() {
   const [Loading, setLoading] = useState(false);
   const [CurrentInventoryInfo, setCurrentInventoryInfo] = useState([]);
 
+  const [ItemName, setItemName] = useState("");
+  const [ItemDescription, setItemDescription] = useState("");
+  const [ItemCategory, setItemCategory] = useState("");
+  const [ItemStatus, setItemStatus] = useState("");
+  const [ItemQuantity, setItemQuantity] = useState("");
+  const [WarehouseName, setWarehouseName] = useState("");
+  const [WarehouseID, setWarehouseID] = useState("");
+
   useEffect(() => {
     setLoading(true);
 
@@ -23,6 +31,13 @@ function InventoryEdit() {
       .get(`http://localhost:8000/inventory/${inventoryID}`)
       .then((response) => {
         setCurrentInventoryInfo(response.data);
+        setItemName(response.data?.name);
+        setItemDescription(response.data?.description);
+        setItemCategory(response.data?.category);
+        setItemStatus(response.data?.status);
+        setItemQuantity(response.data?.quantity);
+        setWarehouseName(response.data?.warehouseName);
+        setWarehouseID(response.data?.warehouseID);
         setLoading(false);
       })
       .catch((error) => {
@@ -30,6 +45,35 @@ function InventoryEdit() {
         setLoading(false);
       });
   }, []);
+
+  const handleStatusChange = (e) => {
+    setItemStatus(e.target.value);
+  };
+
+  const handleUpdateInventory = () => {
+    const UpdatedInventoryData = {
+      warehouseID: WarehouseID,
+      warehouseName: WarehouseName,
+      name: ItemName,
+      description: ItemDescription,
+      category: ItemCategory,
+      status: ItemStatus,
+      quantity: ItemQuantity,
+    };
+
+    axios
+      .put(
+        `http://localhost:8000/inventory/${inventoryID}`,
+        UpdatedInventoryData
+      )
+      .then(() => {
+        navigate("/inventory");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <NavBar />
@@ -42,7 +86,7 @@ function InventoryEdit() {
         alt="Back Arrow"
       />
 
-      <h1>Edit Inventory Item for {inventoryID}</h1>
+      <div>Edit Inventory Item for {inventoryID}</div>
 
       <div>
         {Loading ? (
@@ -50,65 +94,77 @@ function InventoryEdit() {
         ) : (
           <>
             {/* Item Details */}
-            <h1>Item Details</h1>
+            <div>Item Details</div>
             <label htmlFor="itemName">Item Name</label>
             <input
               type="text"
               id="itemName"
-              name="itemName"
-              placeholder={CurrentInventoryInfo?.name}
+              placeholder={ItemName}
+              value={ItemName}
+              onChange={(e) => setItemName(e.target.value)}
             />
-
             <label htmlFor="itemDescription">Description</label>
             <textarea
               type="text"
               id="itemDescription"
-              name="itemDescription"
-              placeholder={CurrentInventoryInfo?.description}
+              placeholder={ItemDescription}
+              value={ItemDescription}
+              onChange={(e) => setItemDescription(e.target.value)}
             />
-
             <label htmlFor="itemCategory">Category</label>
             <input
               type="text"
               id="itemCategory"
-              name="itemCategory"
-              placeholder={CurrentInventoryInfo?.category}
+              placeholder={ItemCategory}
+              value={ItemCategory}
+              onChange={(e) => setItemCategory(e.target.value)}
             />
-
             {/* Item Availability */}
-            <h1>Item Availability</h1>
-            <input type="radio" id="itemStatus-instock" name="itemStatus" />
+            <div>Item Availability</div>
+            <input
+              type="radio"
+              id="itemStatus-instock"
+              name="itemStatus"
+              value="In Stock"
+              checked={ItemStatus === "In Stock"}
+              onChange={handleStatusChange}
+            />
             <label htmlFor="itemStatus-instock">In Stock</label>
-
-            <input type="radio" id="itemStatus-outofstock" name="itemStatus" />
+            <input
+              type="radio"
+              id="itemStatus-outofstock"
+              name="itemStatus"
+              value="Out of Stock"
+              checked={ItemStatus === "Out of Stock"}
+              onChange={handleStatusChange}
+            />
             <label htmlFor="itemStatus-outofstock">Out of Stock</label>
-
             <label htmlFor="itemQuantity">Quantity</label>
             <input
               type="number"
               id="itemQuantity"
-              name="itemQuantity"
-              placeholder={CurrentInventoryInfo?.quantity}
+              placeholder={ItemQuantity}
+              value={ItemQuantity}
+              onChange={(e) => setItemQuantity(e.target.value)}
             />
-
             <label htmlFor="itemWarehouseName">Warehouse Name</label>
             <input
               type="text"
               id="itemWarehouseName"
-              name="itemWarehouseName"
-              placeholder={CurrentInventoryInfo?.warehouseName}
+              placeholder={WarehouseName}
+              value={WarehouseName}
+              onChange={(e) => setWarehouseName(e.target.value)}
             />
-
             <label htmlFor="itemWarehouseId">Warehouse ID</label>
             <input
               type="text"
               id="itemWarehouseId"
-              name="itemWarehouseId"
-              placeholder={CurrentInventoryInfo?.warehouseID}
+              placeholder={WarehouseID}
+              value={WarehouseID}
+              onChange={(e) => setWarehouseID(e.target.value)}
             />
-
-            <button>Cancel</button>
-            <button>+ Add Item</button>
+            <button onClick={() => navigate("/inventory")}>Cancel</button>
+            <button onClick={handleUpdateInventory}>Save</button>
           </>
         )}
       </div>

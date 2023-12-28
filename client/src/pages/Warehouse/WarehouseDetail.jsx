@@ -55,28 +55,28 @@ function WarehouseDetail() {
         alt="Back Arrow"
       />
 
-      <h1>This is WarehouseDetail for {warehouseID}</h1>
-      <h1>Warehouse Info: </h1>
+      <div>This is WarehouseDetail for {warehouseID}</div>
+      <div>Warehouse Info: </div>
       <div>
         {Loading ? (
           <Spinner />
         ) : (
           <>
-            <h1>Warehouse Name: {SingleWarehouseInfo?.name}</h1>
+            <div>Warehouse Name: {SingleWarehouseInfo?.name}</div>
             <NavLink to={`/warehouse/edit/${SingleWarehouseInfo?._id}`}>
               Edit
             </NavLink>
-            <h1>Warehouse Address: {SingleWarehouseInfo?.address}</h1>
-            <h1>
+            <div>Warehouse Address: {SingleWarehouseInfo?.address}</div>
+            <div>
               Contact Name: {SingleWarehouseInfo?.contact?.name}{" "}
               {SingleWarehouseInfo?.contact?.position}
-            </h1>
-            <h1>
+            </div>
+            <div>
               Contact Information: {SingleWarehouseInfo?.contact?.phone}{" "}
               {SingleWarehouseInfo?.contact?.email}
-            </h1>
+            </div>
 
-            <h1>InventoryList:</h1>
+            <div>InventoryList:</div>
             <div>
               <WarehouseInventoryCardList
                 WarehouseInventoriesInfo={WarehouseInventoriesInfo}

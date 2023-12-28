@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useSnackbar } from "notistack";
 
 // Components
 import NavBar from "../../components/NavBar/NavBar";
@@ -9,6 +12,47 @@ import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
 
 function WarehouseCreate() {
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const [WarehouseName, setWarehouseName] = useState("");
+  const [WarehouseAddress, setWarehouseAddress] = useState("");
+  const [WarehouseCity, setWarehouseCity] = useState("");
+  const [WarehouseCountry, setWarehouseCountry] = useState("");
+  const [ContactName, setContactName] = useState("");
+  const [ContactPosition, setContactPosition] = useState("");
+  const [ContactPhone, setContactPhone] = useState("");
+  const [ContactEmail, setContactEmail] = useState("");
+
+  const handleCreateWarehouse = () => {
+    const CreatedWarehouseData = {
+      name: WarehouseName,
+      address: WarehouseAddress,
+      city: WarehouseCity,
+      country: WarehouseCountry,
+      contact: {
+        name: ContactName,
+        position: ContactPosition,
+        phone: ContactPhone,
+        email: ContactEmail,
+      },
+    };
+
+    axios
+      .post(`http://localhost:8000/warehouse`, CreatedWarehouseData)
+      .then(() => {
+        enqueueSnackbar("Warehouse Created successfully", {
+          variant: "success",
+        });
+        navigate("/warehouse");
+      })
+      .catch((error) => {
+        enqueueSnackbar("Error", {
+          variant: "error",
+        });
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <NavBar />
@@ -20,38 +64,94 @@ function WarehouseCreate() {
         src={ArrowBack}
         alt="Back Arrow"
       />
-      <h1>Add New Warehouse</h1>
+      <div>Add New Warehouse</div>
 
-      {/* WArehouse Details */}
-      <h1>Warehouse Details</h1>
+      {/* Warehouse Details */}
+      <div>Warehouse Details</div>
       <label htmlFor="warehouseName">Warehouse Name</label>
-      <input type="text" id="warehouseName" placeholder="Warehouse Name" />
+      <input
+        type="text"
+        id="warehouseName"
+        placeholder="Warehouse Name"
+        value={WarehouseName}
+        onChange={(e) => setWarehouseName(e.target.value)}
+        required
+      />
 
       <label htmlFor="warehouseAddress">Street Address</label>
-      <input type="text" id="warehouseAddress" placeholder="Street Address" />
+      <input
+        type="text"
+        id="warehouseAddress"
+        placeholder="Street Address"
+        value={WarehouseAddress}
+        onChange={(e) => setWarehouseAddress(e.target.value)}
+        required
+      />
 
       <label htmlFor="warehouseCity">City</label>
-      <input type="text" id="warehouseCity" placeholder="City" />
+      <input
+        type="text"
+        id="warehouseCity"
+        placeholder="City"
+        value={WarehouseCity}
+        onChange={(e) => setWarehouseCity(e.target.value)}
+        required
+      />
 
       <label htmlFor="warehouseCountry">Country</label>
-      <input type="text" id="warehouseCountry" placeholder="Country" />
+      <input
+        type="text"
+        id="warehouseCountry"
+        placeholder="Country"
+        value={WarehouseCountry}
+        onChange={(e) => setWarehouseCountry(e.target.value)}
+        required
+      />
 
       {/* Contact Details */}
-      <h1>Contact Details</h1>
+      <div>Contact Details</div>
       <label htmlFor="contactName">Contact Name</label>
-      <input type="text" id="contactName" placeholder="Contact Name" />
+      <input
+        type="text"
+        id="contactName"
+        placeholder="Contact Name"
+        value={ContactName}
+        onChange={(e) => setContactName(e.target.value)}
+        required
+      />
 
       <label htmlFor="contactPosition">Position</label>
-      <input type="text" id="contactPosition" placeholder="Position" />
+      <input
+        type="text"
+        id="contactPosition"
+        placeholder="Position"
+        value={ContactPosition}
+        onChange={(e) => setContactPosition(e.target.value)}
+        required
+      />
 
       <label htmlFor="contactPhone">Phone Number</label>
-      <input type="text" id="contactPhone" placeholder="Phone Number" />
+      <input
+        type="text"
+        id="contactPhone"
+        placeholder="Phone Number"
+        value={ContactPhone}
+        onChange={(e) => setContactPhone(e.target.value)}
+        required
+      />
 
       <label htmlFor="contactEmail">Email</label>
-      <input type="text" id="contactEmail" placeholder="Email" />
+      <input
+        type="text"
+        id="contactEmail"
+        placeholder="Email"
+        value={ContactEmail}
+        onChange={(e) => setContactEmail(e.target.value)}
+        required
+      />
 
-      <button>Cancel</button>
-      <button>+ Add New Warehouse</button>
+      <button onClick={() => navigate("/warehouse")}>Cancel</button>
+      <button onClick={handleCreateWarehouse}>+ Add New Warehouse</button>
 
       <Footer />
     </>

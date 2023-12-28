@@ -6,7 +6,7 @@ import InventoryCard from "../../Card/Inventory/InventoryCard";
 function InventoryCardList({ AllInventoryInfo }) {
   return (
     <>
-      <h1>Inventory</h1>
+      <div>Inventory</div>
       <NavLink to={"/inventory/create"}>
         <div>+Add New Item</div>
       </NavLink>

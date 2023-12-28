@@ -6,7 +6,7 @@ import WarehouseCard from "../../Card/Warehouse/WarehouseCard";
 function WarehouseCardList({ AllWarehouseInfo }) {
   return (
     <>
-      <h1>Warehouses</h1>
+      <div>Warehouses</div>
       <NavLink to={"/warehouse/create"}>
         <div>+Add New Warehouse</div>
       </NavLink>
