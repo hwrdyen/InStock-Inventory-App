@@ -13,6 +13,24 @@ module.exports.getAllInventory = async (req, res) => {
   }
 };
 
+// Get All Inventory from Single Warehouse
+module.exports.getAllWarehouseInventory = async (req, res) => {
+  try {
+    const { warehouseID } = req.params;
+    const AllWarehouseInventory = await Inventory.find({
+      warehouseID: warehouseID,
+    });
+    if (AllWarehouseInventory) {
+      return res.status(200).json({
+        count: AllWarehouseInventory.length,
+        data: AllWarehouseInventory,
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 // Get a Single Inventory
 module.exports.getSingleInventory = async (req, res) => {
   try {

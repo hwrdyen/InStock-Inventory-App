@@ -6,6 +6,12 @@ const inventoryController = require("../controllers/inventoryController");
 // GET All Inventories
 router.get("/", inventoryController.getAllInventory);
 
+// Get All Inventories from Single Warehouse
+router.get(
+  "/warehouse/:warehouseID",
+  inventoryController.getAllWarehouseInventory
+);
+
 // GET a Single Inventory
 router.get("/:id", inventoryController.getSingleInventory);
 
