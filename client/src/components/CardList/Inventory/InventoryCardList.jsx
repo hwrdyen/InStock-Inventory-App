@@ -1,12 +1,24 @@
+import { NavLink } from "react-router-dom";
+
 // Components
 import InventoryCard from "../../Card/Inventory/InventoryCard";
 
-function InventoryCardList() {
+function InventoryCardList({ AllInventoryInfo }) {
   return (
     <>
-      <h1>This is InventoryCardList</h1>
-      <InventoryCard />
-      <InventoryCard />
+      <h1>Inventory</h1>
+      <NavLink to={"/inventory/create"}>
+        <div>+Add New Item</div>
+      </NavLink>
+
+      <div>
+        {AllInventoryInfo.map((SingleInventoryInfo) => (
+          <InventoryCard
+            key={SingleInventoryInfo?._id}
+            SingleInventoryInfo={SingleInventoryInfo}
+          />
+        ))}
+      </div>
     </>
   );
 }
