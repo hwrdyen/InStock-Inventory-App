@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const warehouseRoute = require("./routes/warehouseRoute");
+const inventoryRoute = require("./routes/inventoryRoute");
 
 const app = express();
 const CONNECTION_URL = process.env.mongoDBURL.replace(
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/warehouse", warehouseRoute);
+app.use("/inventory", inventoryRoute);
 
 mongoose
   .connect(CONNECTION_URL)

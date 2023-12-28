@@ -18,9 +18,9 @@ module.exports.getSingleWarehouse = async (req, res) => {
   try {
     const { id } = req.params;
     const SingleWarehouse = await warehouseModel.findById(id);
-    return res.status(200).json({
-      SingleWarehouse,
-    });
+    if (SingleWarehouse) {
+      return res.status(200).json(SingleWarehouse);
+    }
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }
@@ -44,6 +44,7 @@ module.exports.createSingleWarehouse = async (req, res) => {
     };
     const CreatedWarehouse = await warehouseModel.create(newWarehouse);
     return res.status(201).json({
+      message: `Warehouse Created Successfully`,
       data: CreatedWarehouse,
     });
   } catch (error) {
@@ -66,7 +67,6 @@ module.exports.updateSingleWarehouse = async (req, res) => {
     } else {
       return res.status(200).json({
         message: `Warehouse ${id} Updated Successfully`,
-        data: UpdatedWarehouse,
       });
     }
   } catch (error) {
