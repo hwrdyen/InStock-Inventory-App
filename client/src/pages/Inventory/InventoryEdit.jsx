@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useSnackbar } from "notistack";
 
 // Components
 import NavBar from "../../components/NavBar/NavBar";
@@ -13,8 +14,8 @@ import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
 function InventoryEdit() {
   const { inventoryID } = useParams();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const [Loading, setLoading] = useState(false);
-  const [CurrentInventoryInfo, setCurrentInventoryInfo] = useState([]);
 
   const [ItemName, setItemName] = useState("");
   const [ItemDescription, setItemDescription] = useState("");
@@ -30,7 +31,6 @@ function InventoryEdit() {
     axios
       .get(`http://localhost:8000/inventory/${inventoryID}`)
       .then((response) => {
-        setCurrentInventoryInfo(response.data);
         setItemName(response.data?.name);
         setItemDescription(response.data?.description);
         setItemCategory(response.data?.category);
@@ -67,10 +67,17 @@ function InventoryEdit() {
         UpdatedInventoryData
       )
       .then(() => {
+        enqueueSnackbar("Inventory Edited successfully", {
+          variant: "success",
+        });
         navigate("/inventory");
       })
       .catch((error) => {
+        enqueueSnackbar("Error", {
+          variant: "error",
+        });
         console.log(error);
+        alert(`Error: ${error}`);
       });
   };
 

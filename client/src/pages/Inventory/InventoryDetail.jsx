@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useSnackbar } from "notistack";
 
 // Components
 import NavBar from "../../components/NavBar/NavBar";
@@ -13,6 +14,7 @@ import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
 function InventoryDetail() {
   const { inventoryID } = useParams();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const [Loading, setLoading] = useState(false);
   const [SingleInventoryInfo, setSingleInventoryInfo] = useState([]);
 
@@ -26,7 +28,11 @@ function InventoryDetail() {
         setLoading(false);
       })
       .catch((error) => {
+        enqueueSnackbar("Error", {
+          variant: "error",
+        });
         console.log(error);
+        navigate("/*");
         setLoading(false);
       });
   }, []);

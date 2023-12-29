@@ -9,6 +9,7 @@ import Spinner from "../../components/Spinner/Spinner";
 
 function InventoryHome() {
   const [Loading, setLoading] = useState(false);
+  const [UpdateInventoryData, setUpdateInventoryData] = useState(false);
   const [AllInventoryInfo, setAllInventoryInfo] = useState([]);
 
   useEffect(() => {
@@ -18,13 +19,14 @@ function InventoryHome() {
       .get("http://localhost:8000/inventory")
       .then((response) => {
         setAllInventoryInfo(response.data.data);
+        setUpdateInventoryData(false);
         setLoading(false);
       })
       .catch((error) => {
         console.log(error);
         setLoading(false);
       });
-  }, []);
+  }, [UpdateInventoryData]);
 
   return (
     <>
@@ -35,7 +37,10 @@ function InventoryHome() {
         {Loading ? (
           <Spinner />
         ) : (
-          <InventoryCardList AllInventoryInfo={AllInventoryInfo} />
+          <InventoryCardList
+            AllInventoryInfo={AllInventoryInfo}
+            setUpdateInventoryData={setUpdateInventoryData}
+          />
         )}
       </div>
 

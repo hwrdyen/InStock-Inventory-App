@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useSnackbar } from "notistack";
 
 // Components
 import NavBar from "../../components/NavBar/NavBar";
@@ -14,7 +15,10 @@ import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
 function WarehouseDetail() {
   const { warehouseID } = useParams();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const [Loading, setLoading] = useState(false);
+  const [UpdateWarehouseInventoriesData, setUpdateWarehouseInventoriesData] =
+    useState(false);
   const [SingleWarehouseInfo, setSingleWarehouseInfo] = useState([]);
   const [WarehouseInventoriesInfo, setWarehouseInventoriesInfo] = useState([]);
 
@@ -34,14 +38,19 @@ function WarehouseDetail() {
         axios.spread((...res) => {
           setSingleWarehouseInfo(res[0]?.data);
           setWarehouseInventoriesInfo(res[1]?.data?.data);
+          setUpdateWarehouseInventoriesData(false);
           setLoading(false);
         })
       )
       .catch((error) => {
+        enqueueSnackbar("Error", {
+          variant: "error",
+        });
         console.log(error);
+        navigate("/*");
         setLoading(false);
       });
-  }, []);
+  }, [UpdateWarehouseInventoriesData]);
 
   return (
     <>
@@ -80,6 +89,9 @@ function WarehouseDetail() {
             <div>
               <WarehouseInventoryCardList
                 WarehouseInventoriesInfo={WarehouseInventoriesInfo}
+                setUpdateWarehouseInventoriesData={
+                  setUpdateWarehouseInventoriesData
+                }
               />
             </div>
           </>

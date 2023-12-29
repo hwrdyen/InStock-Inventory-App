@@ -2,7 +2,10 @@ import WarehouseInventoryCard from "../../../Card/Warehouse/WarehouseInventoryCa
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-function WarehouseInventoryCardList({ WarehouseInventoriesInfo }) {
+function WarehouseInventoryCardList({
+  WarehouseInventoriesInfo,
+  setUpdateWarehouseInventoriesData,
+}) {
   return (
     <>
       <div> This is InventoryList inside WarehouseDetail: </div>
@@ -11,6 +14,9 @@ function WarehouseInventoryCardList({ WarehouseInventoriesInfo }) {
           <WarehouseInventoryCard
             key={WarehouseInventoryInfo?._id}
             WarehouseInventoryInfo={WarehouseInventoryInfo}
+            setUpdateWarehouseInventoriesData={
+              setUpdateWarehouseInventoriesData
+            }
           />
         ))}
       </div>

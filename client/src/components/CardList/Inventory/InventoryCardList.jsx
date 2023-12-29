@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 // Components
 import InventoryCard from "../../Card/Inventory/InventoryCard";
 
-function InventoryCardList({ AllInventoryInfo }) {
+function InventoryCardList({ AllInventoryInfo, setUpdateInventoryData }) {
   return (
     <>
       <div>Inventory</div>
@@ -16,6 +16,7 @@ function InventoryCardList({ AllInventoryInfo }) {
           <InventoryCard
             key={SingleInventoryInfo?._id}
             SingleInventoryInfo={SingleInventoryInfo}
+            setUpdateInventoryData={setUpdateInventoryData}
           />
         ))}
       </div>

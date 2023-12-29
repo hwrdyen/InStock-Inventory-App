@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 // Component
 import WarehouseCard from "../../Card/Warehouse/WarehouseCard";
 
-function WarehouseCardList({ AllWarehouseInfo }) {
+function WarehouseCardList({ AllWarehouseInfo, setUpdateWarehouseData }) {
   return (
     <>
       <div>Warehouses</div>
@@ -16,6 +16,7 @@ function WarehouseCardList({ AllWarehouseInfo }) {
           <WarehouseCard
             key={SingleWarehouseInfo._id}
             SingleWarehouseInfo={SingleWarehouseInfo}
+            setUpdateWarehouseData={setUpdateWarehouseData}
           />
         ))}
       </div>

@@ -9,21 +9,24 @@ import Spinner from "../../components/Spinner/Spinner";
 
 function WarehouseHome() {
   const [Loading, setLoading] = useState(false);
-  const [AllWarehouseInfo, SetAllWarehouseInfo] = useState([]);
+  const [UpdateWarehouseData, setUpdateWarehouseData] = useState(false);
+  const [AllWarehouseInfo, setAllWarehouseInfo] = useState([]);
 
   useEffect(() => {
     setLoading(true);
+
     axios
       .get("http://localhost:8000/warehouse")
       .then((response) => {
-        SetAllWarehouseInfo(response.data.data);
+        setAllWarehouseInfo(response.data.data);
+        setUpdateWarehouseData(false);
         setLoading(false);
       })
       .catch((error) => {
         console.log(error);
         setLoading(false);
       });
-  }, []);
+  }, [UpdateWarehouseData]);
 
   return (
     <>
@@ -34,7 +37,10 @@ function WarehouseHome() {
         {Loading ? (
           <Spinner />
         ) : (
-          <WarehouseCardList AllWarehouseInfo={AllWarehouseInfo} />
+          <WarehouseCardList
+            AllWarehouseInfo={AllWarehouseInfo}
+            setUpdateWarehouseData={setUpdateWarehouseData}
+          />
         )}
       </div>
       <Footer />

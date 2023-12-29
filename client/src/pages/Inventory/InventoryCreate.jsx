@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSnackbar } from "notistack";
 
 // Components
 import NavBar from "../../components/NavBar/NavBar";
@@ -11,6 +12,7 @@ import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
 
 function InventoryCreate() {
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   const [ItemName, setItemName] = useState("");
   const [ItemDescription, setItemDescription] = useState("");
@@ -38,10 +40,17 @@ function InventoryCreate() {
     axios
       .post(`http://localhost:8000/inventory`, CreatedInventoryData)
       .then(() => {
+        enqueueSnackbar("Inventory Created successfully", {
+          variant: "success",
+        });
         navigate("/inventory");
       })
       .catch((error) => {
+        enqueueSnackbar("Error", {
+          variant: "error",
+        });
         console.log(error);
+        alert(`Error: ${error}`);
       });
   };
 

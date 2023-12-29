@@ -44,7 +44,7 @@ function WarehouseEdit() {
         UpdatedWarehouseData
       )
       .then(() => {
-        enqueueSnackbar("Warehouse Created successfully", {
+        enqueueSnackbar("Warehouse Edited successfully", {
           variant: "success",
         });
         navigate("/warehouse");
