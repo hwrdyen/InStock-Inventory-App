@@ -1,4 +1,6 @@
+import "./WarehouseHome.scss";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 // Components
@@ -31,9 +33,25 @@ function WarehouseHome() {
   return (
     <>
       <NavBar />
-      <div>This is WarehouseHome</div>
-      <div>WarehouseCardList: </div>
-      <div>
+      <div className="WarehouseHome__Container">
+        <div className="WarehouseHome__TitleContainer">
+          <div className="WarehouseHome__Title">Warehouses</div>
+          <div className="WarehouseHome__TitleFunction">
+            <input
+              type="search"
+              placeholder="Search..."
+              className="WarehouseHome__TitleFunction--search"
+            ></input>
+            <NavLink
+              to={"/warehouse/create"}
+              className="WarehouseHome__TitleFunction--buttonlink"
+            >
+              <button className="WarehouseHome__TitleFunction--button">
+                + Add New Warehouse
+              </button>
+            </NavLink>
+          </div>
+        </div>
         {Loading ? (
           <Spinner />
         ) : (

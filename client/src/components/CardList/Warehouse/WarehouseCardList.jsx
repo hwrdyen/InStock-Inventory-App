@@ -1,3 +1,4 @@
+import "./WarehouseCardList.scss";
 import { NavLink } from "react-router-dom";
 
 // Component
@@ -5,12 +6,7 @@ import WarehouseCard from "../../Card/Warehouse/WarehouseCard";
 
 function WarehouseCardList({ AllWarehouseInfo, setUpdateWarehouseData }) {
   return (
-    <>
-      <div>Warehouses</div>
-      <NavLink to={"/warehouse/create"}>
-        <div>+Add New Warehouse</div>
-      </NavLink>
-
+    <div className="CardList__Container">
       <div>
         {AllWarehouseInfo.map((SingleWarehouseInfo) => (
           <WarehouseCard
@@ -20,7 +16,7 @@ function WarehouseCardList({ AllWarehouseInfo, setUpdateWarehouseData }) {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

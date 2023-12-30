@@ -7,7 +7,7 @@ import InStock_Logo from "../../assets/Logo/InStock-Logo.svg";
 function NavBar() {
   return (
     <div className="NavBar__Container">
-      <NavLink to={"/"}>
+      <NavLink to={"/"} className="NavBar__LogoLink">
         <img src={InStock_Logo} className="NavBar__LogoImg" />
       </NavLink>
 

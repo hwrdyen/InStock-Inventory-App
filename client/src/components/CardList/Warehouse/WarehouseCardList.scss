@@ -1,0 +1,15 @@
+@use "../../../styles/global" as *;
+@use "../../../styles/mixins" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/variable" as *;
+
+.CardList {
+  &__TitleContainer {
+    @include mobile {
+    }
+    @include tablet {
+    }
+    @include desktop {
+    }
+  }
+}
