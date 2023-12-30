@@ -1,8 +1,10 @@
+import "./Footer.scss";
+
 function Footer() {
   return (
-    <>
-      <div>This is Footer</div>
-    </>
+    <div className="Footer__Container">
+      <div>&#169; HowieWowie Inc. All Rights Reserved.</div>
+    </div>
   );
 }
 

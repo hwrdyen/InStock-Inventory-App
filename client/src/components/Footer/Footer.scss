@@ -1,0 +1,21 @@
+@use "../../styles/global" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/variable" as *;
+
+.Footer__Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  @include mobile {
+    font-size: 11px;
+  }
+  @include tablet {
+    font-size: 12px;
+  }
+  @include desktop {
+  }
+}

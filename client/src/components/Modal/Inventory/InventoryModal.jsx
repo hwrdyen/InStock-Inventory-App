@@ -34,8 +34,8 @@ function InventoryModal({
         <img src={CloseIcon} alt="Close Icon" onClick={onClose} />
         <div>Delete {SingleInventoryInfo?.name} inventory item?</div>
         <div>
-          Please confirm that you&sbquo;d like to delete{" "}
-          {SingleInventoryInfo?.name} from the inventory list. You won&sbquo;t
+          Please confirm that you&#8217;d like to delete{" "}
+          {SingleInventoryInfo?.name} from the inventory list. You won&#8217;t
           be able to undo this action.
         </div>
 

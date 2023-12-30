@@ -34,9 +34,9 @@ function WarehouseModal({
         <img src={CloseIcon} alt="Close Icon" onClick={onClose} />
         <div>Delete {SingleWarehouseInfo?.name} warehouse?</div>
         <div>
-          Please confirm that you&sbquo;d like to delete the{" "}
+          Please confirm that you&#8217;d like to delete the{" "}
           {SingleWarehouseInfo?.name} from the list of warehouses. You
-          won&sbquo;t be able to undo this action.
+          won&#8217;t be able to undo this action.
         </div>
 
         <button onClick={onClose}>Cancel</button>
