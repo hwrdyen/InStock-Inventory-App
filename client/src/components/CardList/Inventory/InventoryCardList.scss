@@ -3,7 +3,7 @@
 @use "../../../styles/typography" as *;
 @use "../../../styles/variable" as *;
 
-.WarehouseCardList {
+.InventoryCardList {
   &__TabletTitle {
     @include mobile {
       display: none;
