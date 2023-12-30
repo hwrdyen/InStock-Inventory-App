@@ -1,4 +1,6 @@
+import "./InventoryHome.scss";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 // Components
@@ -31,9 +33,25 @@ function InventoryHome() {
   return (
     <>
       <NavBar />
-      <div>This is InventoryHome</div>
-      <div>InventoryCardList:</div>
-      <div>
+      <div className="InventoryHome__Container">
+        <div className="InventoryHome__TitleContainer">
+          <div className="InventoryHome__Title">Inventory</div>
+          <div className="InventoryHome__TitleFunction">
+            <input
+              type="search"
+              placeholder="Search..."
+              className="InventoryHome__TitleFunction--search"
+            ></input>
+            <NavLink
+              to={"/inventory/create"}
+              className="InventoryHome__TitleFunction--buttonlink"
+            >
+              <button className="WarehouseHome__TitleFunction--button">
+                + Add New Item
+              </button>
+            </NavLink>
+          </div>
+        </div>
         {Loading ? (
           <Spinner />
         ) : (

@@ -6,11 +6,6 @@ import InventoryCard from "../../Card/Inventory/InventoryCard";
 function InventoryCardList({ AllInventoryInfo, setUpdateInventoryData }) {
   return (
     <>
-      <div>Inventory</div>
-      <NavLink to={"/inventory/create"}>
-        <div>+Add New Item</div>
-      </NavLink>
-
       <div>
         {AllInventoryInfo.map((SingleInventoryInfo) => (
           <InventoryCard
