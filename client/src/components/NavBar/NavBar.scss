@@ -1,0 +1,97 @@
+@use "../../styles/global" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/variable" as *;
+
+.NavBar {
+  &__Container {
+    background-color: $instock-graphite;
+    color: $instock-white;
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 200px;
+    }
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      align-items: normal;
+      justify-content: space-between;
+      padding: $tablet-side-margin $tablet-side-margin 0px;
+      min-height: 200px;
+    }
+    @include desktop {
+      padding: $tablet-side-margin $desktop-side-margin 0px;
+    }
+
+    &--tab {
+      background-color: $instock-graphite;
+      @include mobile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0px $mobile-side-margin;
+        width: calc(100% - $mobile-side-margin);
+        gap: $mobile-side-margin;
+        box-sizing: content-box;
+      }
+      @include tablet {
+        align-items: normal;
+        justify-content: center;
+        margin: 0px;
+        width: 400px;
+        gap: 24px;
+      }
+      @include desktop {
+      }
+    }
+  }
+
+  &__LogoImg {
+    @include mobile {
+      padding: 24px 0px;
+    }
+    @include tablet {
+      padding: 0px;
+    }
+    @include desktop {
+    }
+  }
+
+  &__ButtonLink {
+    @include mobile {
+      width: 100%;
+    }
+    @include tablet {
+    }
+    @include desktop {
+    }
+  }
+
+  &__Button {
+    background-color: $instock-graphite;
+    color: $instock-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include mobile {
+      min-height: 36px;
+      min-width: 163px;
+      text-align: center;
+      width: 100%;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    @include tablet {
+    }
+    @include desktop {
+    }
+  }
+
+  &__Button:hover {
+    background-color: $instock-black;
+    border-radius: 20px;
+  }
+}

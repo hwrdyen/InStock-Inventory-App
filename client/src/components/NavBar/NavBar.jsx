@@ -1,3 +1,4 @@
+import "./NavBar.scss";
 import { NavLink } from "react-router-dom";
 
 // Assets
@@ -5,21 +6,21 @@ import InStock_Logo from "../../assets/Logo/InStock-Logo.svg";
 
 function NavBar() {
   return (
-    <>
-      <div>
-        <NavLink to={"/"}>
-          <img src={InStock_Logo} />
+    <div className="NavBar__Container">
+      <NavLink to={"/"}>
+        <img src={InStock_Logo} className="NavBar__LogoImg" />
+      </NavLink>
+
+      <div className="NavBar__Container--tab">
+        <NavLink to={"/warehouse"} className="NavBar__ButtonLink">
+          <button className="NavBar__Button">Warehouse</button>
         </NavLink>
 
-        <NavLink to={"/warehouse"}>
-          <div>Warehouse</div>
-        </NavLink>
-
-        <NavLink to={"/inventory"}>
-          <div>Inventory</div>
+        <NavLink to={"/inventory"} className="NavBar__ButtonLink">
+          <button className="NavBar__Button">Inventory</button>
         </NavLink>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -2,3 +2,14 @@
 @use "./styles/mixins" as *;
 @use "./styles/typography" as *;
 @use "./styles/variable" as *;
+
+// .App__Container {
+//   /* hide scrollbar for IE, Edge and Firefox */
+//   -ms-overflow-style: none;
+//   scrollbar-width: none;
+// }
+
+// /* hide scrollbar for chrome, safari and opera */
+// .App__Container::-webkit-scrollbar {
+//   display: none;
+// }

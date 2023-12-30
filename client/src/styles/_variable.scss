@@ -1,21 +1,24 @@
 // Breakpoints
-$mobile: 320px;
+$mobile: 350px;
 $tablet: 768px;
 $desktop: 1280px;
 
+// Margin
+$mobile-side-margin: 16px;
+$tablet-side-margin: 32px;
+$desktop-side-margin: 130px;
+
 // Primary Colors
 $instock-graphite: #232940;
-$instock-eggshell: #D1D1D1;
-$instock-black: #13182C;
-
+$instock-eggshell: #d1d1d1;
+$instock-black: #13182c;
 
 // Secondary Colors
 $instock-white: #ffffff;
-$instock-cloud: #BDC5D5;
-$instock-slate: #5C667E;
-$instock-blue: #2E66E5;
-
+$instock-cloud: #bdc5d5;
+$instock-slate: #5c667e;
+$instock-blue: #2e66e5;
 
 // Teriary Colors
 $instock-green: #158463;
-$instock-orange: #C94515;
+$instock-orange: #c94515;

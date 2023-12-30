@@ -17,7 +17,7 @@ import InventoryCreate from "./pages/Inventory/InventoryCreate";
 
 function App() {
   return (
-    <>
+    <div className="App__Container">
       <Routes>
         <Route path={"/"} element={<Home />} />
         <Route path={"/warehouse"} element={<WarehouseHome />} />
@@ -36,7 +36,7 @@ function App() {
         />
         <Route path={"*"} element={<NotFound />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
