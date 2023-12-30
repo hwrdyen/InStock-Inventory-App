@@ -2,3 +2,82 @@
 @use "../../../styles/mixins" as *;
 @use "../../../styles/typography" as *;
 @use "../../../styles/variable" as *;
+
+.CardList {
+  &__TabletTitle {
+    @include mobile {
+      display: none;
+    }
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      background: #f7f8f9b2;
+      opacity: 70%;
+      padding: 11px $tablet-side-margin;
+      font-size: 12px;
+      font-weight: bold;
+      gap: 36px;
+    }
+    @include desktop {
+    }
+
+    &--title {
+      @include mobile {
+      }
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+      }
+      @include desktop {
+      }
+    }
+
+    &--blocktitlesection {
+      @include mobile {
+      }
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        width: 50%;
+      }
+      @include desktop {
+      }
+    }
+
+    &--blocktitle {
+      @include mobile {
+      }
+      @include tablet {
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 12px;
+      }
+      @include desktop {
+      }
+    }
+
+    &--sorticon {
+      @include mobile {
+      }
+      @include tablet {
+        width: 16px;
+        height: 16px;
+      }
+      @include desktop {
+      }
+    }
+
+    &--button {
+      @include mobile {
+      }
+      @include tablet {
+        margin-left: auto;
+      }
+      @include desktop {
+      }
+    }
+  }
+}
