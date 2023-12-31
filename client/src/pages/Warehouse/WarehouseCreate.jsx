@@ -38,26 +38,41 @@ function WarehouseCreate() {
       },
     };
 
-    axios
-      .post(`http://localhost:8000/warehouse`, CreatedWarehouseData)
-      .then(() => {
-        enqueueSnackbar("Warehouse Created successfully", {
-          variant: "success",
-        });
-        navigate("/warehouse");
-      })
-      .catch((error) => {
-        enqueueSnackbar("Error", {
-          variant: "error",
-        });
-        console.log(error);
+    if (
+      !WarehouseName ||
+      !WarehouseAddress ||
+      !WarehouseCity ||
+      !WarehouseCountry ||
+      !ContactName ||
+      !ContactPosition ||
+      !ContactPhone ||
+      !ContactEmail
+    ) {
+      enqueueSnackbar("Missing Mandatory Field!", {
+        variant: "error",
       });
+    } else {
+      axios
+        .post(`http://localhost:8000/warehouse`, CreatedWarehouseData)
+        .then(() => {
+          enqueueSnackbar("Warehouse Created successfully", {
+            variant: "success",
+          });
+          navigate("/warehouse");
+        })
+        .catch((error) => {
+          enqueueSnackbar("Error", {
+            variant: "error",
+          });
+          console.log(error);
+        });
+    }
   };
 
   return (
     <>
       <NavBar />
-      <div className="WarehouseCreate__Contianer">
+      <div className="WarehouseCreate__Container">
         {/* WarehouseCreate Title */}
         <div className="WarehouseCreate__TitleContainer">
           <img
@@ -263,11 +278,6 @@ function WarehouseCreate() {
           </div>
         </div>
       </div>
-
-      {/* Warehouse Details */}
-
-      {/* Contact Details */}
-
       <Footer />
     </>
   );

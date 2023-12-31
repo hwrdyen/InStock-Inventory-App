@@ -3,7 +3,7 @@
 @use "../../styles/typography" as *;
 @use "../../styles/variable" as *;
 
-.WarehouseCreate {
+.WarehouseEdit {
   &__Container {
     @include mobile {
       display: flex;
@@ -178,15 +178,17 @@
         color: $instock-black;
       }
       @include tablet {
-        width: 10%;
+        width: 50%;
         min-width: 72px;
         max-width: 90px;
       }
       @include desktop {
+        min-width: 100px;
+        max-width: 150px;
       }
     }
 
-    &--createbutton {
+    &--savebutton {
       @include mobile {
         width: 48%;
         text-align: center;
@@ -196,11 +198,13 @@
         color: $instock-white;
       }
       @include tablet {
-        width: 20%;
-        min-width: 138px;
-        max-width: 150px;
+        width: 50%;
+        min-width: 72px;
+        max-width: 90px;
       }
       @include desktop {
+        min-width: 100px;
+        max-width: 150px;
       }
     }
   }
