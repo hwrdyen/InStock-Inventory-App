@@ -1,3 +1,4 @@
+import "./InventoryEdit.scss";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -61,120 +62,240 @@ function InventoryEdit() {
       quantity: ItemQuantity,
     };
 
-    axios
-      .put(
-        `http://localhost:8000/inventory/${inventoryID}`,
-        UpdatedInventoryData
-      )
-      .then(() => {
-        enqueueSnackbar("Inventory Edited successfully", {
-          variant: "success",
-        });
-        navigate("/inventory");
-      })
-      .catch((error) => {
-        enqueueSnackbar("Error", {
-          variant: "error",
-        });
-        console.log(error);
-        alert(`Error: ${error}`);
+    if (
+      !WarehouseID ||
+      !WarehouseName ||
+      !ItemName ||
+      !ItemDescription ||
+      !ItemCategory ||
+      !ItemStatus ||
+      !ItemQuantity
+    ) {
+      enqueueSnackbar("Missing Mandatory Field!", {
+        variant: "error",
       });
+    } else {
+      axios
+        .put(
+          `http://localhost:8000/inventory/${inventoryID}`,
+          UpdatedInventoryData
+        )
+        .then(() => {
+          enqueueSnackbar("Inventory Edited successfully", {
+            variant: "success",
+          });
+          navigate("/inventory");
+        })
+        .catch((error) => {
+          enqueueSnackbar("Error", {
+            variant: "error",
+          });
+          console.log(error);
+          alert(`Error: ${error}`);
+        });
+    }
   };
 
   return (
     <>
       <NavBar />
-      <img
-        onClick={(e) => {
-          e.preventDefault();
-          navigate(-1);
-        }}
-        src={ArrowBack}
-        alt="Back Arrow"
-      />
+      {Loading ? (
+        <Spinner />
+      ) : (
+        <div className="InventoryEdit__Container">
+          {/* InventoryEdit Title */}
+          <div className="InventoryCreate__TitleContainer">
+            <img
+              onClick={(e) => {
+                e.preventDefault();
+                navigate(-1);
+              }}
+              src={ArrowBack}
+              alt="Back Arrow"
+              className="InventoryCreate__TitleContainer--backicon"
+            />
+            <div className="InventoryCreate__TitleContainer--title">
+              Edit Inventory Item
+            </div>
+          </div>
 
-      <div>Edit Inventory Item for {inventoryID}</div>
+          {/* Inventory Edit Form */}
+          <div className="InventoryEdit__InputFormContainer">
+            {/* Form Input Container */}
+            <div className="InventoryEdit__FormContainer">
+              {/* Item Details */}
+              <div className="InventoryEdit__FormContainer--itemdetailsection">
+                <div className="InventoryEdit__FormContainer--detailtitle">
+                  Item Details
+                </div>
 
-      <div>
-        {Loading ? (
-          <Spinner />
-        ) : (
-          <>
-            {/* Item Details */}
-            <div>Item Details</div>
-            <label htmlFor="itemName">Item Name</label>
-            <input
-              type="text"
-              id="itemName"
-              placeholder={ItemName}
-              value={ItemName}
-              onChange={(e) => setItemName(e.target.value)}
-            />
-            <label htmlFor="itemDescription">Description</label>
-            <textarea
-              type="text"
-              id="itemDescription"
-              placeholder={ItemDescription}
-              value={ItemDescription}
-              onChange={(e) => setItemDescription(e.target.value)}
-            />
-            <label htmlFor="itemCategory">Category</label>
-            <input
-              type="text"
-              id="itemCategory"
-              placeholder={ItemCategory}
-              value={ItemCategory}
-              onChange={(e) => setItemCategory(e.target.value)}
-            />
-            {/* Item Availability */}
-            <div>Item Availability</div>
-            <input
-              type="radio"
-              id="itemStatus-instock"
-              name="itemStatus"
-              value="In Stock"
-              checked={ItemStatus === "In Stock"}
-              onChange={handleStatusChange}
-            />
-            <label htmlFor="itemStatus-instock">In Stock</label>
-            <input
-              type="radio"
-              id="itemStatus-outofstock"
-              name="itemStatus"
-              value="Out of Stock"
-              checked={ItemStatus === "Out of Stock"}
-              onChange={handleStatusChange}
-            />
-            <label htmlFor="itemStatus-outofstock">Out of Stock</label>
-            <label htmlFor="itemQuantity">Quantity</label>
-            <input
-              type="number"
-              id="itemQuantity"
-              placeholder={ItemQuantity}
-              value={ItemQuantity}
-              onChange={(e) => setItemQuantity(e.target.value)}
-            />
-            <label htmlFor="itemWarehouseName">Warehouse Name</label>
-            <input
-              type="text"
-              id="itemWarehouseName"
-              placeholder={WarehouseName}
-              value={WarehouseName}
-              onChange={(e) => setWarehouseName(e.target.value)}
-            />
-            <label htmlFor="itemWarehouseId">Warehouse ID</label>
-            <input
-              type="text"
-              id="itemWarehouseId"
-              placeholder={WarehouseID}
-              value={WarehouseID}
-              onChange={(e) => setWarehouseID(e.target.value)}
-            />
-            <button onClick={() => navigate("/inventory")}>Cancel</button>
-            <button onClick={handleUpdateInventory}>Save</button>
-          </>
-        )}
-      </div>
+                {/* Item Name */}
+                <div className="InventoryEdit__FormContainer--inputblock">
+                  <label
+                    htmlFor="itemName"
+                    className="InventoryEdit__FormContainer--detaillabel"
+                  >
+                    Item Name
+                  </label>
+                  <input
+                    type="text"
+                    id="itemName"
+                    placeholder={ItemName}
+                    value={ItemName}
+                    onChange={(e) => setItemName(e.target.value)}
+                    className="InventoryEdit__FormContainer--detailinput"
+                  />
+                </div>
+
+                {/* Item Description */}
+                <div className="InventoryEdit__FormContainer--inputblock">
+                  <label
+                    htmlFor="itemDescription"
+                    className="InventoryEdit__FormContainer--detaillabel"
+                  >
+                    Description
+                  </label>
+                  <textarea
+                    type="text"
+                    id="itemDescription"
+                    placeholder={ItemDescription}
+                    value={ItemDescription}
+                    onChange={(e) => setItemDescription(e.target.value)}
+                    className="InventoryEdit__FormContainer--detailtextareainput"
+                    rows="4"
+                    cols="50"
+                  />
+                </div>
+
+                {/* Item Category */}
+                <div className="InventoryEdit__FormContainer--inputblock">
+                  <label
+                    htmlFor="itemCategory"
+                    className="InventoryEdit__FormContainer--detaillabel"
+                  >
+                    Category
+                  </label>
+                  <input
+                    type="text"
+                    id="itemCategory"
+                    placeholder={ItemCategory}
+                    value={ItemCategory}
+                    onChange={(e) => setItemCategory(e.target.value)}
+                    className="InventoryEdit__FormContainer--detailinput"
+                  />
+                </div>
+              </div>
+
+              {/* Item Availability */}
+              <div className="InventoryEdit__FormContainer--itemavailabilitysection">
+                <div className="InventoryEdit__FormContainer--detailtitle">
+                  Item Availability
+                </div>
+
+                {/* Status */}
+                <div className="InventoryEdit__FormContainer--inputblock">
+                  <div className="InventoryEdit__FormContainer--radioblock">
+                    <div className="InventoryEdit__FormContainer--radiooption">
+                      <input
+                        type="radio"
+                        id="itemStatus-instock"
+                        name="itemStatus"
+                        value="In Stock"
+                        checked={ItemStatus === "In Stock"}
+                        onChange={handleStatusChange}
+                      />
+                      <label htmlFor="itemStatus-instock">In Stock</label>
+                    </div>
+                    <div className="InventoryEdit__FormContainer--radiooption">
+                      <input
+                        type="radio"
+                        id="itemStatus-outofstock"
+                        name="itemStatus"
+                        value="Out of Stock"
+                        checked={ItemStatus === "Out of Stock"}
+                        onChange={handleStatusChange}
+                      />
+                      <label htmlFor="itemStatus-outofstock">
+                        Out of Stock
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Quantity */}
+                <div className="InventoryEdit__FormContainer--inputblock">
+                  <label
+                    htmlFor="itemQuantity"
+                    className="InventoryEdit__FormContainer--detaillabel"
+                  >
+                    Quantity
+                  </label>
+                  <input
+                    type="number"
+                    id="itemQuantity"
+                    placeholder={ItemQuantity}
+                    value={ItemQuantity}
+                    onChange={(e) => setItemQuantity(e.target.value)}
+                    className="InventoryEdit__FormContainer--detailinput"
+                  />
+                </div>
+
+                {/* Warehouse Name */}
+                <div className="InventoryEdit__FormContainer--inputblock">
+                  <label
+                    htmlFor="itemWarehouseName"
+                    className="InventoryEdit__FormContainer--detaillabel"
+                  >
+                    Warehouse Name
+                  </label>
+                  <input
+                    type="text"
+                    id="itemWarehouseName"
+                    placeholder={WarehouseName}
+                    value={WarehouseName}
+                    onChange={(e) => setWarehouseName(e.target.value)}
+                    className="InventoryEdit__FormContainer--detailinput"
+                  />
+                </div>
+
+                {/* Warehouse ID */}
+                <div className="InventoryEdit__FormContainer--inputblock">
+                  <label
+                    htmlFor="itemWarehouseId"
+                    className="InventoryEdit__FormContainer--detaillabel"
+                  >
+                    Warehouse ID
+                  </label>
+                  <input
+                    type="text"
+                    id="itemWarehouseId"
+                    placeholder={WarehouseID}
+                    value={WarehouseID}
+                    onChange={(e) => setWarehouseID(e.target.value)}
+                    className="InventoryEdit__FormContainer--detailinput"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Button Container */}
+            <div className="InventoryEdit__ButtonContainer">
+              <button
+                onClick={() => navigate("/inventory")}
+                className="InventoryEdit__ButtonContainer--cancelbutton"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleUpdateInventory}
+                className="InventoryEdit__ButtonContainer--savebutton"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </>
