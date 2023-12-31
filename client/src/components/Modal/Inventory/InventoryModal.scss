@@ -1,0 +1,140 @@
+@use "../../../styles/global" as *;
+@use "../../../styles/mixins" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/variable" as *;
+
+.InventoryModal {
+  &__Container {
+    @include mobile {
+      position: fixed;
+      background-color: rgba(0, 0, 0, 0.6);
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    @include tablet {
+    }
+    @include desktop {
+    }
+  }
+
+  &__PopUpContainer {
+    @include mobile {
+      width: 70%;
+      height: 50%;
+      background-color: white;
+      border-radius: 20px;
+      padding: $mobile-side-margin;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @include tablet {
+      padding: $tablet-side-margin;
+    }
+    @include desktop {
+    }
+  }
+
+  &__DeleteMsgContainer {
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+    }
+    @include tablet {
+    }
+    @include desktop {
+    }
+
+    &--closeicon {
+      @include mobile {
+        width: 24px;
+        height: 24px;
+        margin-left: auto;
+        margin-bottom: 20px;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--deletetitle {
+      @include mobile {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 16px;
+      }
+      @include tablet {
+        font-size: 32px;
+      }
+      @include desktop {
+      }
+    }
+
+    &--deletedescription {
+      @include mobile {
+        font-size: 15px;
+      }
+      @include tablet {
+        font-size: 19px;
+      }
+      @include desktop {
+      }
+    }
+  }
+
+  &__ButtonContainer {
+    @include mobile {
+      margin-top: auto;
+      display: flex;
+      flex-direction: row;
+      gap: 10%;
+      width: 100%;
+    }
+    @include tablet {
+      width: 50%;
+      margin-left: auto;
+    }
+    @include desktop {
+    }
+
+    &--cancelbutton {
+      @include mobile {
+        width: 45%;
+        text-align: center;
+        padding: 8px 0px;
+        border-radius: 20px;
+        background-color: $instock-white;
+        border: 1px solid $instock-cloud;
+        color: $instock-black;
+      }
+      @include tablet {
+        width: 50%;
+      }
+      @include desktop {
+      }
+    }
+
+    &--deletebutton {
+      @include mobile {
+        width: 45%;
+        text-align: center;
+        padding: 8px 0px;
+        border-radius: 20px;
+        background-color: $instock-orange;
+        color: $instock-white;
+      }
+      @include tablet {
+        width: 50%;
+      }
+      @include desktop {
+      }
+    }
+  }
+}
