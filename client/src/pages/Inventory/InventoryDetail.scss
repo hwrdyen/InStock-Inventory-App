@@ -1,0 +1,238 @@
+@use "../../styles/global" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/variable" as *;
+
+.InventoryDetail {
+  &__Container {
+    @include mobile {
+      margin: 0px $mobile-side-margin;
+      box-shadow: 0px 2px 5px 0px #13182c1a;
+    }
+    @include tablet {
+      margin: 0px $tablet-side-margin;
+    }
+    @include desktop {
+      margin: 0px $desktop-side-margin;
+    }
+  }
+
+  &__TitleContainer {
+    @include mobile {
+      display: flex;
+      flex-direction: row;
+      padding: 32px 24px 24px;
+      align-items: center;
+    }
+    @include tablet {
+    }
+    @include desktop {
+    }
+
+    &--title {
+      @include mobile {
+        font-size: 28px;
+        font-weight: bold;
+        margin-left: 8px;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--editlink {
+      @include mobile {
+        width: 36px;
+        height: 36px;
+        margin-left: auto;
+        border-radius: 20px;
+      }
+      @include tablet {
+        width: 95px;
+        height: 38px;
+      }
+      @include desktop {
+      }
+    }
+
+    &--editblock {
+      @include mobile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 20px;
+        background-color: $instock-blue;
+      }
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        width: 95px;
+        height: 38px;
+        border-radius: 20px;
+        background-color: $instock-blue;
+      }
+      @include desktop {
+      }
+    }
+
+    &--editicon {
+      @include mobile {
+        width: 25px;
+        height: 25px;
+        filter: brightness(0) invert(1);
+      }
+      @include tablet {
+        display: block;
+        width: 20px;
+        height: 20px;
+      }
+      @include desktop {
+      }
+    }
+
+    &--edittitle {
+      @include mobile {
+        display: none;
+      }
+      @include tablet {
+        display: flex;
+        color: white;
+        font-weight: bold;
+      }
+      @include desktop {
+      }
+    }
+  }
+
+  &__InfoContainer {
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      padding: $mobile-side-margin 24px 24px;
+      border-top: 1px solid $instock-cloud;
+      gap: 16px;
+    }
+    @include tablet {
+      flex-direction: row;
+      gap: 0px;
+    }
+    @include desktop {
+    }
+
+    &--infosection {
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      @include tablet {
+        width: 50%;
+        padding-right: 5%;
+      }
+      @include desktop {
+      }
+    }
+
+    &--infoblock {
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--infotitle {
+      @include mobile {
+        font-size: 11px;
+        font-weight: bold;
+        color: $instock-slate;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--infocontent {
+      @include mobile {
+        font-size: 13px;
+        color: $instock-black;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--statussection {
+      @include mobile {
+        display: flex;
+        flex-direction: row;
+      }
+      @include tablet {
+        width: 50%;
+        border-left: 1px solid $instock-cloud;
+        padding-left: 5%;
+      }
+      @include desktop {
+      }
+    }
+
+    &--statusblock {
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 50%;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--statustitle {
+      @include mobile {
+        font-size: 11px;
+        font-weight: bold;
+        color: $instock-slate;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--statuscontent {
+      @include mobile {
+        font-size: 13px;
+        color: $instock-black;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--qtyblock {
+      @include mobile {
+        width: 50%;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+  }
+}
