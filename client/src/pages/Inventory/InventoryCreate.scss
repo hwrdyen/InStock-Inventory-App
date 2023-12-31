@@ -1,0 +1,247 @@
+@use "../../styles/global" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/variable" as *;
+
+.InventoryCreate {
+  &__Container {
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      margin: 0px $mobile-side-margin;
+      box-shadow: 0px 2px 5px 0px #13182c1a;
+    }
+    @include tablet {
+      margin: 0px $tablet-side-margin;
+    }
+    @include desktop {
+      margin: 0px $desktop-side-margin;
+    }
+  }
+
+  &__TitleContainer {
+    @include mobile {
+      display: flex;
+      flex-direction: row;
+      padding: 32px 24px 24px;
+      gap: 8px;
+    }
+    @include tablet {
+    }
+    @include desktop {
+    }
+
+    &--title {
+      @include mobile {
+        font-size: 27px;
+        font-weight: bold;
+      }
+      @include tablet {
+        font-size: 32px;
+      }
+      @include desktop {
+      }
+    }
+  }
+
+  &__InputFormContainer {
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+    }
+    @include tablet {
+    }
+    @include desktop {
+    }
+  }
+
+  &__FormContainer {
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+    }
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+    }
+    @include desktop {
+    }
+
+    &--itemdetailsection {
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        padding: 16px 24px 8px 24px;
+        border-top: 1px solid $instock-cloud;
+      }
+      @include tablet {
+        width: 50%;
+        padding: 24px 32px 8px 32px;
+      }
+      @include desktop {
+      }
+    }
+
+    &--itemavailabilitysection {
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        padding: 16px 24px 8px 24px;
+        border-top: 1px solid $instock-cloud;
+      }
+      @include tablet {
+        width: 50%;
+        padding: 24px 32px 8px 32px;
+        border-left: 1px solid $instock-cloud;
+      }
+      @include desktop {
+      }
+    }
+
+    &--detailtitle {
+      @include mobile {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 24px;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--inputblock {
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 16px;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--detaillabel {
+      @include mobile {
+        font-size: 13px;
+        font-weight: bold;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--detailinput {
+      @include mobile {
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 1px solid $instock-cloud;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--detailtextareainput {
+      @include mobile {
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 1px solid $instock-cloud;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--radioblock {
+      @include mobile {
+        display: flex;
+        flex-direction: row;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--radiooption {
+      @include mobile {
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+  }
+
+  &__ButtonContainer {
+    @include mobile {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 4%;
+      height: 68px;
+      box-sizing: border-box;
+      padding: $mobile-side-margin 24px;
+      background-color: #f7f8f9b2;
+    }
+    @include tablet {
+      justify-content: flex-end;
+      margin-left: auto;
+      width: 100%;
+    }
+    @include desktop {
+    }
+
+    &--cancelbutton {
+      @include mobile {
+        width: 48%;
+        text-align: center;
+        padding: 8px 0px;
+        border-radius: 20px;
+        background-color: $instock-white;
+        border: 1px solid $instock-cloud;
+        color: $instock-black;
+      }
+      @include tablet {
+        width: 50%;
+        min-width: 72px;
+        max-width: 90px;
+      }
+      @include desktop {
+        min-width: 100px;
+        max-width: 150px;
+      }
+    }
+
+    &--createbutton {
+      @include mobile {
+        width: 48%;
+        text-align: center;
+        padding: 8px 0px;
+        border-radius: 20px;
+        background-color: $instock-blue;
+        color: $instock-white;
+      }
+      @include tablet {
+        width: 50%;
+        min-width: 72px;
+        max-width: 90px;
+      }
+      @include desktop {
+        min-width: 100px;
+        max-width: 150px;
+      }
+    }
+  }
+}
