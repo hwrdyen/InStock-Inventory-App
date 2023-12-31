@@ -1,0 +1,188 @@
+@use "../styles/global" as *;
+@use "../styles/mixins" as *;
+@use "../styles/typography" as *;
+@use "../styles/variable" as *;
+
+.Home {
+  &__Container {
+    @include mobile {
+      margin: $mobile-side-margin;
+      margin-top: 0px;
+      box-shadow: 0px 2px 5px 0px $instock-cloud;
+    }
+    @include tablet {
+      margin: $tablet-side-margin;
+      margin-top: 0px;
+    }
+    @include desktop {
+      margin: $desktop-side-margin;
+      margin-top: 0px;
+    }
+
+    &--introsection {
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+      }
+      @include tablet {
+        flex-direction: row;
+      }
+      @include desktop {
+      }
+    }
+
+    &--titlecontainer {
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: $mobile-side-margin;
+        gap: 10px;
+      }
+      @include tablet {
+        width: 60%;
+        gap: 20px;
+        padding: $tablet-side-margin;
+      }
+      @include desktop {
+        padding: $desktop-side-margin;
+        padding-top: $tablet-side-margin;
+      }
+    }
+
+    &--title {
+      @include mobile {
+        font-size: 28px;
+        font-weight: bold;
+      }
+      @include tablet {
+        font-size: 32px;
+      }
+      @include desktop {
+      }
+    }
+
+    &--description {
+      @include mobile {
+        font-size: 15px;
+        font-weight: bold;
+        color: $instock-slate;
+      }
+      @include tablet {
+        font-size: 17px;
+      }
+      @include desktop {
+      }
+    }
+
+    &--icon {
+      @include mobile {
+        width: 100%;
+      }
+      @include tablet {
+        width: 40%;
+      }
+      @include desktop {
+      }
+    }
+
+    &--buttoncontainer {
+      @include mobile {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 10%;
+        margin-top: 20px;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--buttonlink {
+      @include mobile {
+        width: 40%;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--button {
+      @include mobile {
+        width: 100%;
+        padding: 8px;
+        border-radius: 20px;
+        background-color: $instock-blue;
+        color: $instock-white;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--functionsection {
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: $mobile-side-margin;
+      }
+      @include tablet {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 5%;
+        row-gap: 5%;
+        padding: $tablet-side-margin;
+        min-height: 700px;
+      }
+      @include desktop {
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: $desktop-side-margin;
+        padding-top: 0px;
+        min-height: 600px;
+      }
+    }
+
+    &--functionicon {
+      @include mobile {
+        width: 40px;
+        height: 40px;
+      }
+      @include tablet {
+        width: 50px;
+        height: 50px;
+      }
+      @include desktop {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    &--functiontitle {
+      @include mobile {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--functiondescription {
+      @include mobile {
+        font-size: 16px;
+        color: $instock-slate;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+  }
+}
