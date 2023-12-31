@@ -49,14 +49,6 @@ function WarehouseInventoryCardList({
                 className="WarehouseInventoryCardList__TabletTitle--sorticon"
               />
             </div>
-            <div className="WarehouseInventoryCardList__TabletTitle--blocktitle">
-              WAREHOUSE{" "}
-              <img
-                src={SortIcon}
-                alt="Sort Icon"
-                className="WarehouseInventoryCardList__TabletTitle--sorticon"
-              />
-            </div>
           </div>
         </div>
 

@@ -46,6 +46,7 @@
         width: 36px;
         height: 36px;
         margin-left: auto;
+        border-radius: 20px;
       }
       @include tablet {
         width: 95px;
@@ -57,8 +58,14 @@
 
     &--editblock {
       @include mobile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
         width: 36px;
         height: 36px;
+        border-radius: 20px;
+        background-color: $instock-blue;
       }
       @include tablet {
         display: flex;
@@ -77,14 +84,14 @@
 
     &--editicon {
       @include mobile {
-        width: 36px;
-        height: 36px;
+        width: 25px;
+        height: 25px;
+        filter: brightness(0) invert(1);
       }
       @include tablet {
         display: block;
         width: 20px;
         height: 20px;
-        filter: brightness(0) invert(1); // need to fix
       }
       @include desktop {
       }

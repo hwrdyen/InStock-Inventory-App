@@ -1,0 +1,145 @@
+@use "../../../../styles/global" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/typography" as *;
+@use "../../../../styles/variable" as *;
+
+.WarehouseInventoryCard {
+  &__Container {
+    display: flex;
+    @include mobile {
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px 24px 24px 24px;
+      border-top: 1px solid $instock-cloud;
+    }
+    @include tablet {
+      flex-direction: row;
+      align-items: center;
+      padding: 16px 32px;
+    }
+    @include desktop {
+    }
+  }
+
+  &__Container:hover {
+    @include mobile {
+    }
+    @include tablet {
+      background: #2e66e512;
+      cursor: pointer;
+    }
+    @include desktop {
+    }
+  }
+
+  &__Detail {
+    display: flex;
+    @include mobile {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+    @include tablet {
+      justify-content: normal;
+    }
+    @include desktop {
+    }
+
+    &--section {
+      display: flex;
+      @include mobile {
+        flex-direction: column;
+        gap: 16px;
+        width: calc(50% - 8px);
+      }
+      @include tablet {
+        gap: 0px;
+        flex-direction: row;
+        width: 50%;
+      }
+      @include desktop {
+      }
+    }
+
+    &--sectionblock {
+      display: flex;
+      @include mobile {
+        flex-direction: column;
+        gap: 4px;
+        height: 40px;
+      }
+      @include tablet {
+        min-height: 44px;
+        height: auto;
+        justify-content: center;
+        width: 50%;
+      }
+      @include desktop {
+      }
+    }
+
+    &--blocktitle {
+      @include mobile {
+        font-size: 11px;
+        font-weight: bold;
+        color: $instock-slate;
+      }
+      @include tablet {
+        display: none;
+      }
+      @include desktop {
+      }
+    }
+
+    &--info {
+      color: $instock-black;
+      @include mobile {
+        font-size: 13px;
+      }
+      @include tablet {
+        font-size: 14px;
+      }
+      @include desktop {
+      }
+    }
+
+    &--nameblock {
+      display: flex;
+      flex-direction: row;
+      @include mobile {
+        font-size: 13px;
+        text-align: center;
+        align-items: center;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--nametitle {
+      @include mobile {
+        padding-bottom: 3px;
+        color: $instock-blue;
+        font-weight: bold;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+  }
+
+  &__ButtonContainer {
+    display: flex;
+    @include mobile {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    @include tablet {
+      gap: 16px;
+    }
+    @include desktop {
+    }
+  }
+}
