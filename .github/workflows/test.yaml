@@ -1,0 +1,8 @@
+name: InStock Project
+on: [push]
+jobs:
+  test-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This is the first step"
+      - run: echo "This is the second step"
