@@ -114,9 +114,15 @@ function InventoryDetail() {
                     <div className="InventoryDetail__InfoContainer--statustitle">
                       STATUS
                     </div>
-                    <div className="InventoryDetail__InfoContainer--statuscontent">
-                      {SingleInventoryInfo?.status}
-                    </div>
+                    {SingleInventoryInfo?.status === "Out of Stock" ? (
+                      <div className="InventoryDetail__InfoContainer--statuscontent InventoryDetail__InfoContainer--outofstock">
+                        {SingleInventoryInfo?.status}
+                      </div>
+                    ) : (
+                      <div className="InventoryDetail__InfoContainer--statuscontent InventoryDetail__InfoContainer--instock">
+                        {SingleInventoryInfo?.status}
+                      </div>
+                    )}
                   </div>
 
                   {/* Warehouse */}

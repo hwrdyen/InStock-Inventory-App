@@ -61,9 +61,15 @@ function WarehouseInventoryCard({
             <div className="WarehouseInventoryCard__Detail--blocktitle">
               STATUS
             </div>
-            <div className="WarehouseInventoryCard__Detail--info">
-              {WarehouseInventoryInfo?.status}
-            </div>
+            {WarehouseInventoryInfo?.status === "Out of Stock" ? (
+              <div className="WarehouseInventoryCard__Detail--info WarehouseInventoryCard__Detail--outofstock">
+                {WarehouseInventoryInfo?.status}
+              </div>
+            ) : (
+              <div className="WarehouseInventoryCard__Detail--info WarehouseInventoryCard__Detail--instock">
+                {WarehouseInventoryInfo?.status}
+              </div>
+            )}
           </div>
 
           {/* QTY */}

@@ -54,9 +54,15 @@ function InventoryCard({ SingleInventoryInfo, setUpdateInventoryData }) {
           {/* Status */}
           <div className="InventoryCard__Detail--sectionblock">
             <div className="InventoryCard__Detail--blocktitle">STATUS</div>
-            <div className="InventoryCard__Detail--info">
-              {SingleInventoryInfo?.status}
-            </div>
+            {SingleInventoryInfo?.status === "Out of Stock" ? (
+              <div className="InventoryCard__Detail--info InventoryCard__Detail--outofstock">
+                {SingleInventoryInfo?.status}
+              </div>
+            ) : (
+              <div className="InventoryCard__Detail--info InventoryCard__Detail--instock">
+                {SingleInventoryInfo?.status}
+              </div>
+            )}
           </div>
 
           {/* QTY */}

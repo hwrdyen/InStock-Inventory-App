@@ -202,6 +202,18 @@
       }
     }
 
+    &--statussubblock {
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
     &--statustitle {
       @include mobile {
         font-size: 11px;
@@ -218,6 +230,40 @@
       @include mobile {
         font-size: 13px;
         color: $instock-black;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--outofstock {
+      @include mobile {
+        border-radius: 20px;
+        background-color: #c9451512;
+        color: #c94515;
+        font-weight: bold;
+        padding: 4px;
+        width: 70px;
+        text-align: center;
+        font-size: 11px;
+      }
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+
+    &--instock {
+      @include mobile {
+        border-radius: 20px;
+        background-color: #15846312;
+        color: #158463;
+        font-weight: bold;
+        padding: 4px;
+        width: 70px;
+        text-align: center;
+        font-size: 11px;
       }
       @include tablet {
       }
