@@ -7,7 +7,11 @@ function Spinner() {
   return (
     <>
       <div className="Spinner__Container">
-        <img src={AutoRenewIcon} alt="AutoRenew Icon" />
+        <img
+          src={AutoRenewIcon}
+          alt="AutoRenew Icon"
+          className="Spinner__icon"
+        />
         <div>Loading...</div>
       </div>
     </>
