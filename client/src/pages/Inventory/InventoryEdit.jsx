@@ -25,6 +25,7 @@ function InventoryEdit() {
   const [ItemQuantity, setItemQuantity] = useState("");
   const [WarehouseName, setWarehouseName] = useState("");
   const [WarehouseID, setWarehouseID] = useState("");
+  const [WarehouseList, setWarehouseList] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -51,6 +52,17 @@ function InventoryEdit() {
     setItemStatus(e.target.value);
   };
 
+  const handleCategoryChange = (e) => {
+    setItemCategory(e.target.value);
+  };
+
+  const handleWarehouseChange = (e) => {
+    let selector = document.getElementById("itemWarehouseName");
+    let selectedWarehouseName = selector.options[selector.selectedIndex].text;
+    setWarehouseName(selectedWarehouseName);
+    setWarehouseID(e.target.value);
+  };
+
   const handleUpdateInventory = () => {
     const UpdatedInventoryData = {
       warehouseID: WarehouseID,
@@ -69,7 +81,7 @@ function InventoryEdit() {
       !ItemDescription ||
       !ItemCategory ||
       !ItemStatus ||
-      !ItemQuantity
+      (ItemStatus === "In Stock" && !ItemQuantity)
     ) {
       enqueueSnackbar("Missing Mandatory Field!", {
         variant: "error",
@@ -96,6 +108,23 @@ function InventoryEdit() {
     }
   };
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/warehouse`)
+      .then((response) => {
+        setWarehouseList(response?.data?.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (ItemStatus === "Out of Stock") {
+      setItemQuantity(0);
+    }
+  }, [ItemStatus]);
+
   return (
     <>
       <NavBar />
@@ -104,7 +133,7 @@ function InventoryEdit() {
       ) : (
         <div className="InventoryEdit__Container">
           {/* InventoryEdit Title */}
-          <div className="InventoryCreate__TitleContainer">
+          <div className="InventoryEdit__TitleContainer">
             <img
               onClick={(e) => {
                 e.preventDefault();
@@ -112,9 +141,9 @@ function InventoryEdit() {
               }}
               src={ArrowBack}
               alt="Back Arrow"
-              className="InventoryCreate__TitleContainer--backicon"
+              className="InventoryEdit__TitleContainer--backicon"
             />
-            <div className="InventoryCreate__TitleContainer--title">
+            <div className="InventoryEdit__TitleContainer--title">
               Edit Inventory Item
             </div>
           </div>
@@ -175,14 +204,19 @@ function InventoryEdit() {
                   >
                     Category
                   </label>
-                  <input
-                    type="text"
+                  <select
+                    name="itemCategory"
                     id="itemCategory"
-                    placeholder={ItemCategory}
-                    value={ItemCategory}
-                    onChange={(e) => setItemCategory(e.target.value)}
+                    onChange={handleCategoryChange}
                     className="InventoryEdit__FormContainer--detailinput"
-                  />
+                    value={ItemCategory}
+                  >
+                    <option value="Electronics">Electronics</option>
+                    <option value="Gear">Gear</option>
+                    <option value="Apparel">Apparel</option>
+                    <option value="Health">Health</option>
+                    <option value="Accessories">Accessories</option>
+                  </select>
                 </div>
               </div>
 
@@ -230,14 +264,26 @@ function InventoryEdit() {
                   >
                     Quantity
                   </label>
-                  <input
-                    type="number"
-                    id="itemQuantity"
-                    placeholder={ItemQuantity}
-                    value={ItemQuantity}
-                    onChange={(e) => setItemQuantity(e.target.value)}
-                    className="InventoryEdit__FormContainer--detailinput"
-                  />
+                  {ItemStatus === "Out of Stock" ? (
+                    <input
+                      type="number"
+                      id="itemQuantity"
+                      value={ItemQuantity}
+                      onChange={(e) => setItemQuantity(e.target.value)}
+                      className="InventoryEdit__FormContainer--detailinput"
+                      placeholder="0"
+                      disabled
+                    />
+                  ) : (
+                    <input
+                      type="number"
+                      id="itemQuantity"
+                      value={ItemQuantity}
+                      onChange={(e) => setItemQuantity(e.target.value)}
+                      className="InventoryEdit__FormContainer--detailinput"
+                      placeholder={ItemQuantity}
+                    />
+                  )}
                 </div>
 
                 {/* Warehouse Name */}
@@ -246,20 +292,32 @@ function InventoryEdit() {
                     htmlFor="itemWarehouseName"
                     className="InventoryEdit__FormContainer--detaillabel"
                   >
-                    Warehouse Name
+                    Warehouse
                   </label>
-                  <input
+                  <select
+                    id="itemWarehouseName"
+                    onChange={handleWarehouseChange}
+                    className="InventoryEdit__FormContainer--detailinput"
+                    value={WarehouseID}
+                  >
+                    {WarehouseList.map((warehouse) => (
+                      <option key={warehouse?._id} value={warehouse?._id}>
+                        {warehouse?.name}
+                      </option>
+                    ))}
+                  </select>
+                  {/* <input
                     type="text"
                     id="itemWarehouseName"
                     placeholder={WarehouseName}
                     value={WarehouseName}
                     onChange={(e) => setWarehouseName(e.target.value)}
                     className="InventoryEdit__FormContainer--detailinput"
-                  />
+                  /> */}
                 </div>
 
                 {/* Warehouse ID */}
-                <div className="InventoryEdit__FormContainer--inputblock">
+                {/* <div className="InventoryEdit__FormContainer--inputblock">
                   <label
                     htmlFor="itemWarehouseId"
                     className="InventoryEdit__FormContainer--detaillabel"
@@ -274,7 +332,7 @@ function InventoryEdit() {
                     onChange={(e) => setWarehouseID(e.target.value)}
                     className="InventoryEdit__FormContainer--detailinput"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
 

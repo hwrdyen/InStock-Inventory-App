@@ -1,5 +1,5 @@
 import "./InventoryCreate.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSnackbar } from "notistack";
@@ -22,9 +22,21 @@ function InventoryCreate() {
   const [ItemQuantity, setItemQuantity] = useState("");
   const [WarehouseName, setWarehouseName] = useState("");
   const [WarehouseID, setWarehouseID] = useState("");
+  const [WarehouseList, setWarehouseList] = useState([]);
 
   const handleStatusChange = (e) => {
     setItemStatus(e.target.value);
+  };
+
+  const handleCategoryChange = (e) => {
+    setItemCategory(e.target.value);
+  };
+
+  const handleWarehouseChange = (e) => {
+    let selector = document.getElementById("itemWarehouseName");
+    let selectedWarehouseName = selector.options[selector.selectedIndex].text;
+    setWarehouseName(selectedWarehouseName);
+    setWarehouseID(e.target.value);
   };
 
   const handleCreateInventory = () => {
@@ -45,7 +57,7 @@ function InventoryCreate() {
       !ItemDescription ||
       !ItemCategory ||
       !ItemStatus ||
-      !ItemQuantity
+      (ItemStatus === "In Stock" && !ItemQuantity)
     ) {
       enqueueSnackbar("Missing Mandatory Field!", {
         variant: "error",
@@ -68,6 +80,23 @@ function InventoryCreate() {
         });
     }
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/warehouse`)
+      .then((response) => {
+        setWarehouseList(response?.data?.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (ItemStatus === "Out of Stock") {
+      setItemQuantity(0);
+    }
+  }, [ItemStatus]);
 
   return (
     <>
@@ -144,14 +173,21 @@ function InventoryCreate() {
                 >
                   Category
                 </label>
-                <input
-                  type="text"
+                <select
+                  name="itemCategory"
                   id="itemCategory"
-                  value={ItemCategory}
-                  onChange={(e) => setItemCategory(e.target.value)}
+                  onChange={handleCategoryChange}
                   className="InventoryCreate__FormContainer--detailinput"
-                  placeholder="Category"
-                />
+                >
+                  <option value="" selected disabled hidden>
+                    Please Select
+                  </option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Gear">Gear</option>
+                  <option value="Apparel">Apparel</option>
+                  <option value="Health">Health</option>
+                  <option value="Accessories">Accessories</option>
+                </select>
               </div>
             </div>
 
@@ -200,14 +236,26 @@ function InventoryCreate() {
                 >
                   Quantity
                 </label>
-                <input
-                  type="number"
-                  id="itemQuantity"
-                  value={ItemQuantity}
-                  onChange={(e) => setItemQuantity(e.target.value)}
-                  className="InventoryCreate__FormContainer--detailinput"
-                  placeholder="0"
-                />
+                {ItemStatus === "Out of Stock" ? (
+                  <input
+                    type="number"
+                    id="itemQuantity"
+                    value={ItemQuantity}
+                    onChange={(e) => setItemQuantity(e.target.value)}
+                    className="InventoryCreate__FormContainer--detailinput"
+                    placeholder="0"
+                    disabled
+                  />
+                ) : (
+                  <input
+                    type="number"
+                    id="itemQuantity"
+                    value={ItemQuantity}
+                    onChange={(e) => setItemQuantity(e.target.value)}
+                    className="InventoryCreate__FormContainer--detailinput"
+                    placeholder="0"
+                  />
+                )}
               </div>
 
               {/* Warehouse Name */}
@@ -216,34 +264,22 @@ function InventoryCreate() {
                   htmlFor="itemWarehouseName"
                   className="InventoryCreate__FormContainer--detaillabel"
                 >
-                  Warehouse Name
+                  Warehouse
                 </label>
-                <input
-                  type="text"
+                <select
                   id="itemWarehouseName"
-                  value={WarehouseName}
-                  onChange={(e) => setWarehouseName(e.target.value)}
+                  onChange={handleWarehouseChange}
                   className="InventoryCreate__FormContainer--detailinput"
-                  placeholder="Warehouse Name"
-                />
-              </div>
-
-              {/* Warehouse ID */}
-              <div className="InventoryCreate__FormContainer--inputblock">
-                <label
-                  htmlFor="itemWarehouseId"
-                  className="InventoryCreate__FormContainer--detaillabel"
                 >
-                  Warehouse ID
-                </label>
-                <input
-                  type="text"
-                  id="itemWarehouseId"
-                  value={WarehouseID}
-                  onChange={(e) => setWarehouseID(e.target.value)}
-                  className="InventoryCreate__FormContainer--detailinput"
-                  placeholder="Warehouse ID"
-                />
+                  <option value="" selected disabled hidden>
+                    Please Select
+                  </option>
+                  {WarehouseList.map((warehouse) => (
+                    <option key={warehouse?._id} value={warehouse?._id}>
+                      {warehouse?.name}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>
