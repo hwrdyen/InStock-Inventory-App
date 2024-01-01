@@ -16,10 +16,6 @@ jobs:
           npm install &&
           npm run start
         env:
-          DOTENV_KEY: ${{ secrets.DOTENV_KEY }}
-      - name: "Start Frontend"
-        run: |
-          cd client &&
-          npm install &&
-          npm run build &&
-          npm run start
+          PORT: ${{ secrets.PORT }}
+          mongoDBURL: ${{ secrets.MONGODBURL }}
+          mongoDBPassword: ${{ secrets.MONGODBPASSWORD }}
