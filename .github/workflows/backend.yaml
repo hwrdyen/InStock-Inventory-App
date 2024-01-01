@@ -4,9 +4,9 @@ jobs:
   build-app:
     runs-on: ubuntu-latest
     env:
-        PORT: ${{ secrets.PORT }}
-        mongoDBURL: ${{ secrets.MONGODBURL }}
-        mongoDBPassword: ${{ secrets.MONGODBPASSWORD }}
+      PORT: ${{ secrets.PORT }}
+      mongoDBURL: ${{ secrets.MONGODBURL }}
+      mongoDBPassword: ${{ secrets.MONGODBPASSWORD }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -16,8 +16,5 @@ jobs:
         run: node -v
       - name: Switch to BackEnd folder
         run: cd server
-        run: npm install
       - name: Start Backend
-        run:
-          npm run start
-
+        run: npm run start
