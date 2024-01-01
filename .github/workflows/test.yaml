@@ -15,6 +15,8 @@ jobs:
           cd server &&
           npm install &&
           npm run start
+        env:
+          DOTENV_KEY: ${{ secrets.DOTENV_KEY }}
       - name: "Start Frontend"
         run: |
           cd client &&
