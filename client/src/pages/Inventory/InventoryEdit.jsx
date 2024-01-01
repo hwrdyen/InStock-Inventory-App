@@ -306,33 +306,7 @@ function InventoryEdit() {
                       </option>
                     ))}
                   </select>
-                  {/* <input
-                    type="text"
-                    id="itemWarehouseName"
-                    placeholder={WarehouseName}
-                    value={WarehouseName}
-                    onChange={(e) => setWarehouseName(e.target.value)}
-                    className="InventoryEdit__FormContainer--detailinput"
-                  /> */}
                 </div>
-
-                {/* Warehouse ID */}
-                {/* <div className="InventoryEdit__FormContainer--inputblock">
-                  <label
-                    htmlFor="itemWarehouseId"
-                    className="InventoryEdit__FormContainer--detaillabel"
-                  >
-                    Warehouse ID
-                  </label>
-                  <input
-                    type="text"
-                    id="itemWarehouseId"
-                    placeholder={WarehouseID}
-                    value={WarehouseID}
-                    onChange={(e) => setWarehouseID(e.target.value)}
-                    className="InventoryEdit__FormContainer--detailinput"
-                  />
-                </div> */}
               </div>
             </div>
 
