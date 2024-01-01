@@ -13,7 +13,9 @@ function InventoryModal({
   const { enqueueSnackbar } = useSnackbar();
   const handleDeleteInventory = () => {
     axios
-      .delete(`http://localhost:8000/inventory/${SingleInventoryInfo?._id}`)
+      .delete(
+        `https://instock-inventory-be.onrender.com/inventory/${SingleInventoryInfo?._id}`
+      )
       .then(() => {
         enqueueSnackbar("Inventory Deleted successfully", {
           variant: "success",

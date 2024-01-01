@@ -24,7 +24,7 @@ function InventoryDetail() {
     setLoading(true);
 
     axios
-      .get(`http://localhost:8000/inventory/${inventoryID}`)
+      .get(`https://instock-inventory-be.onrender.com/inventory/${inventoryID}`)
       .then((response) => {
         setSingleInventoryInfo(response.data);
         setLoading(false);

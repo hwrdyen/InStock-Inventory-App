@@ -18,7 +18,7 @@ function InventoryHome() {
     setLoading(true);
 
     axios
-      .get("http://localhost:8000/inventory")
+      .get("https://instock-inventory-be.onrender.com/inventory")
       .then((response) => {
         setAllInventoryInfo(response.data.data);
         setUpdateInventoryData(false);

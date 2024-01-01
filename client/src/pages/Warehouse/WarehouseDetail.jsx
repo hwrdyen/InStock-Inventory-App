@@ -28,10 +28,10 @@ function WarehouseDetail() {
     setLoading(true);
 
     const WarehouseRequest = axios.get(
-      `http://localhost:8000/warehouse/${warehouseID}`
+      `https://instock-inventory-be.onrender.com/warehouse/${warehouseID}`
     );
     const InventoryRequest = axios.get(
-      `http://localhost:8000/inventory/warehouse/${warehouseID}`
+      `https://instock-inventory-be.onrender.com/inventory/warehouse/${warehouseID}`
     );
 
     axios

@@ -31,7 +31,7 @@ function InventoryEdit() {
     setLoading(true);
 
     axios
-      .get(`http://localhost:8000/inventory/${inventoryID}`)
+      .get(`https://instock-inventory-be.onrender.com/inventory/${inventoryID}`)
       .then((response) => {
         setItemName(response.data?.name);
         setItemDescription(response.data?.description);
@@ -89,7 +89,7 @@ function InventoryEdit() {
     } else {
       axios
         .put(
-          `http://localhost:8000/inventory/${inventoryID}`,
+          `https://instock-inventory-be.onrender.com/inventory/${inventoryID}`,
           UpdatedInventoryData
         )
         .then(() => {
@@ -110,7 +110,7 @@ function InventoryEdit() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/warehouse`)
+      .get(`https://instock-inventory-be.onrender.com/warehouse`)
       .then((response) => {
         setWarehouseList(response?.data?.data);
       })

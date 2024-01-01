@@ -64,7 +64,10 @@ function InventoryCreate() {
       });
     } else {
       axios
-        .post(`http://localhost:8000/inventory`, CreatedInventoryData)
+        .post(
+          `https://instock-inventory-be.onrender.com/inventory`,
+          CreatedInventoryData
+        )
         .then(() => {
           enqueueSnackbar("Inventory Created successfully", {
             variant: "success",
@@ -83,7 +86,7 @@ function InventoryCreate() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/warehouse`)
+      .get(`https://instock-inventory-be.onrender.com/warehouse`)
       .then((response) => {
         setWarehouseList(response?.data?.data);
       })

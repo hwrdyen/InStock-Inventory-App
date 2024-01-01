@@ -18,7 +18,7 @@ function WarehouseHome() {
     setLoading(true);
 
     axios
-      .get("http://localhost:8000/warehouse")
+      .get("https://instock-inventory-be.onrender.com/warehouse")
       .then((response) => {
         setAllWarehouseInfo(response.data.data);
         setUpdateWarehouseData(false);

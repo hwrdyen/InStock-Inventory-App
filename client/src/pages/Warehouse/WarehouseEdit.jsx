@@ -27,7 +27,7 @@ function WarehouseEdit() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/warehouse/${warehouseID}`)
+      .get(`https://instock-inventory-be.onrender.com/warehouse/${warehouseID}`)
       .then((response) => {
         setWarehouseName(response?.data?.name);
         setWarehouseAddress(response?.data?.address);
@@ -70,7 +70,7 @@ function WarehouseEdit() {
     } else {
       axios
         .put(
-          `http://localhost:8000/warehouse/${warehouseID}`,
+          `https://instock-inventory-be.onrender.com/warehouse/${warehouseID}`,
           UpdatedWarehouseData
         )
         .then(() => {

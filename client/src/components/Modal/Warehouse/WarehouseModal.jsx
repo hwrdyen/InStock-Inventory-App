@@ -13,7 +13,9 @@ function WarehouseModal({
   const { enqueueSnackbar } = useSnackbar();
   const handleDeleteWarehouse = () => {
     axios
-      .delete(`http://localhost:8000/warehouse/${SingleWarehouseInfo?._id}`)
+      .delete(
+        `https://instock-inventory-be.onrender.com/warehouse/${SingleWarehouseInfo?._id}`
+      )
       .then(() => {
         enqueueSnackbar("Warehouse Deleted successfully", {
           variant: "success",
