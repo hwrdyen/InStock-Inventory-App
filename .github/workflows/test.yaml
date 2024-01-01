@@ -1,8 +1,23 @@
 name: InStock Project
 on: [push]
 jobs:
-  test-github-actions:
+  build-app:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This is the first step"
-      - run: echo "This is the second step"
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "18.7.0"
+      - name: Check Node Version
+        run: node -v
+      - name: "Start Backend"
+        run: |
+          cd server &&
+          npm install &&
+          npm run start
+      - name: "Start Frontend"
+        run: |
+          cd client &&
+          npm install &&
+          npm run build &&
+          npm run start
