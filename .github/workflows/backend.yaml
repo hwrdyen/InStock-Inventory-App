@@ -3,6 +3,10 @@ on: [push]
 jobs:
   build-app:
     runs-on: ubuntu-latest
+    env:
+        PORT: ${{ secrets.PORT }}
+        mongoDBURL: ${{ secrets.MONGODBURL }}
+        mongoDBPassword: ${{ secrets.MONGODBPASSWORD }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -10,12 +14,10 @@ jobs:
           node-version: "18.7.0"
       - name: Check Node Version
         run: node -v
-      - name: "Start Backend"
-        run: |
-          cd server &&
-          npm install &&
+      - name: Switch to BackEnd folder
+        run: cd server
+        run: npm install
+      - name: Start Backend
+        run:
           npm run start
-        env:
-          PORT: ${{ secrets.PORT }}
-          mongoDBURL: ${{ secrets.MONGODBURL }}
-          mongoDBPassword: ${{ secrets.MONGODBPASSWORD }}
+
