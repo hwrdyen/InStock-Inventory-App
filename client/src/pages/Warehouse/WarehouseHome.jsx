@@ -9,6 +9,8 @@ import Footer from "../../components/Footer/Footer";
 import WarehouseCardList from "../../components/CardList/Warehouse/WarehouseCardList";
 import Spinner from "../../components/Spinner/Spinner";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 function WarehouseHome() {
   const [Loading, setLoading] = useState(false);
   const [UpdateWarehouseData, setUpdateWarehouseData] = useState(false);
@@ -18,7 +20,7 @@ function WarehouseHome() {
     setLoading(true);
 
     axios
-      .get("https://instock-inventory-be.onrender.com/warehouse")
+      .get(`${API_BASE_URL}/warehouse`)
       .then((response) => {
         setAllWarehouseInfo(response.data.data);
         setUpdateWarehouseData(false);

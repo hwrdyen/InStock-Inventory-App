@@ -13,6 +13,8 @@ import Spinner from "../../components/Spinner/Spinner";
 import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
 import EditIcon from "../../assets/Icons/edit-24px.svg";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 function InventoryDetail() {
   const { inventoryID } = useParams();
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ function InventoryDetail() {
     setLoading(true);
 
     axios
-      .get(`https://instock-inventory-be.onrender.com/inventory/${inventoryID}`)
+      .get(`${API_BASE_URL}/inventory/${inventoryID}`)
       .then((response) => {
         setSingleInventoryInfo(response.data);
         setLoading(false);

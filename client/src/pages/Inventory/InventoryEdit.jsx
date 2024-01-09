@@ -12,6 +12,8 @@ import Spinner from "../../components/Spinner/Spinner";
 // Assets
 import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 function InventoryEdit() {
   const { inventoryID } = useParams();
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ function InventoryEdit() {
     setLoading(true);
 
     axios
-      .get(`https://instock-inventory-be.onrender.com/inventory/${inventoryID}`)
+      .get(`${API_BASE_URL}/inventory/${inventoryID}`)
       .then((response) => {
         setItemName(response.data?.name);
         setItemDescription(response.data?.description);
@@ -88,10 +90,7 @@ function InventoryEdit() {
       });
     } else {
       axios
-        .put(
-          `https://instock-inventory-be.onrender.com/inventory/${inventoryID}`,
-          UpdatedInventoryData
-        )
+        .put(`${API_BASE_URL}/inventory/${inventoryID}`, UpdatedInventoryData)
         .then(() => {
           enqueueSnackbar("Inventory Edited successfully", {
             variant: "success",
@@ -110,7 +109,7 @@ function InventoryEdit() {
 
   useEffect(() => {
     axios
-      .get(`https://instock-inventory-be.onrender.com/warehouse`)
+      .get(`${API_BASE_URL}/warehouse`)
       .then((response) => {
         setWarehouseList(response?.data?.data);
       })

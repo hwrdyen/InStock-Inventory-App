@@ -5,6 +5,8 @@ import { useSnackbar } from "notistack";
 // Assets
 import CloseIcon from "../../../assets/Icons/close-24px.svg";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 function InventoryModal({
   SingleInventoryInfo,
   onClose,
@@ -13,9 +15,7 @@ function InventoryModal({
   const { enqueueSnackbar } = useSnackbar();
   const handleDeleteInventory = () => {
     axios
-      .delete(
-        `https://instock-inventory-be.onrender.com/inventory/${SingleInventoryInfo?._id}`
-      )
+      .delete(`${API_BASE_URL}/inventory/${SingleInventoryInfo?._id}`)
       .then(() => {
         enqueueSnackbar("Inventory Deleted successfully", {
           variant: "success",

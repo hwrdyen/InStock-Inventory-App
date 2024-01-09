@@ -14,6 +14,8 @@ import WarehouseInventoryCardList from "../../components/CardList/Warehouse/Ware
 import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
 import EditIcon from "../../assets/Icons/edit-24px.svg";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 function WarehouseDetail() {
   const { warehouseID } = useParams();
   const navigate = useNavigate();
@@ -28,10 +30,10 @@ function WarehouseDetail() {
     setLoading(true);
 
     const WarehouseRequest = axios.get(
-      `https://instock-inventory-be.onrender.com/warehouse/${warehouseID}`
+      `${API_BASE_URL}/warehouse/${warehouseID}`
     );
     const InventoryRequest = axios.get(
-      `https://instock-inventory-be.onrender.com/inventory/warehouse/${warehouseID}`
+      `${API_BASE_URL}/inventory/warehouse/${warehouseID}`
     );
 
     axios

@@ -5,6 +5,8 @@ import { useSnackbar } from "notistack";
 // Assets
 import CloseIcon from "../../../assets/Icons/close-24px.svg";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 function WarehouseModal({
   SingleWarehouseInfo,
   onClose,
@@ -13,9 +15,7 @@ function WarehouseModal({
   const { enqueueSnackbar } = useSnackbar();
   const handleDeleteWarehouse = () => {
     axios
-      .delete(
-        `https://instock-inventory-be.onrender.com/warehouse/${SingleWarehouseInfo?._id}`
-      )
+      .delete(`${API_BASE_URL}/warehouse/${SingleWarehouseInfo?._id}`)
       .then(() => {
         enqueueSnackbar("Warehouse Deleted successfully", {
           variant: "success",

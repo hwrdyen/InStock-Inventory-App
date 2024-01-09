@@ -9,6 +9,8 @@ import Footer from "../../components/Footer/Footer";
 import InventoryCardList from "../../components/CardList/Inventory/InventoryCardList";
 import Spinner from "../../components/Spinner/Spinner";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 function InventoryHome() {
   const [Loading, setLoading] = useState(false);
   const [UpdateInventoryData, setUpdateInventoryData] = useState(false);
@@ -18,7 +20,7 @@ function InventoryHome() {
     setLoading(true);
 
     axios
-      .get("https://instock-inventory-be.onrender.com/inventory")
+      .get(`${API_BASE_URL}/inventory`)
       .then((response) => {
         setAllInventoryInfo(response.data.data);
         setUpdateInventoryData(false);

@@ -11,6 +11,8 @@ import Footer from "../../components/Footer/Footer";
 // Assets
 import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 function WarehouseEdit() {
   const { warehouseID } = useParams();
   const navigate = useNavigate();
@@ -26,18 +28,16 @@ function WarehouseEdit() {
   const [ContactEmail, setContactEmail] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`https://instock-inventory-be.onrender.com/warehouse/${warehouseID}`)
-      .then((response) => {
-        setWarehouseName(response?.data?.name);
-        setWarehouseAddress(response?.data?.address);
-        setWarehouseCity(response?.data?.city);
-        setWarehouseCountry(response?.data?.country);
-        setContactName(response?.data?.contact?.name);
-        setContactPosition(response?.data?.contact?.position);
-        setContactPhone(response?.data?.contact?.phone);
-        setContactEmail(response?.data?.contact?.email);
-      });
+    axios.get(`${API_BASE_URL}/warehouse/${warehouseID}`).then((response) => {
+      setWarehouseName(response?.data?.name);
+      setWarehouseAddress(response?.data?.address);
+      setWarehouseCity(response?.data?.city);
+      setWarehouseCountry(response?.data?.country);
+      setContactName(response?.data?.contact?.name);
+      setContactPosition(response?.data?.contact?.position);
+      setContactPhone(response?.data?.contact?.phone);
+      setContactEmail(response?.data?.contact?.email);
+    });
   }, []);
 
   const handleUpdateWarehouse = () => {
@@ -69,10 +69,7 @@ function WarehouseEdit() {
       });
     } else {
       axios
-        .put(
-          `https://instock-inventory-be.onrender.com/warehouse/${warehouseID}`,
-          UpdatedWarehouseData
-        )
+        .put(`${API_BASE_URL}/warehouse/${warehouseID}`, UpdatedWarehouseData)
         .then(() => {
           enqueueSnackbar("Warehouse Edited successfully", {
             variant: "success",

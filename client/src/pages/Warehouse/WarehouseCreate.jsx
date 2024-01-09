@@ -11,6 +11,8 @@ import Footer from "../../components/Footer/Footer";
 // Assets
 import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 function WarehouseCreate() {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
@@ -53,10 +55,7 @@ function WarehouseCreate() {
       });
     } else {
       axios
-        .post(
-          `https://instock-inventory-be.onrender.com/warehouse`,
-          CreatedWarehouseData
-        )
+        .post(`${API_BASE_URL}/warehouse`, CreatedWarehouseData)
         .then(() => {
           enqueueSnackbar("Warehouse Created successfully", {
             variant: "success",

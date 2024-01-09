@@ -11,6 +11,8 @@ import Footer from "../../components/Footer/Footer";
 // Assets
 import ArrowBack from "../../assets/Icons/arrow_back-24px.svg";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 function InventoryCreate() {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
@@ -64,10 +66,7 @@ function InventoryCreate() {
       });
     } else {
       axios
-        .post(
-          `https://instock-inventory-be.onrender.com/inventory`,
-          CreatedInventoryData
-        )
+        .post(`${API_BASE_URL}/inventory`, CreatedInventoryData)
         .then(() => {
           enqueueSnackbar("Inventory Created successfully", {
             variant: "success",
@@ -86,7 +85,7 @@ function InventoryCreate() {
 
   useEffect(() => {
     axios
-      .get(`https://instock-inventory-be.onrender.com/warehouse`)
+      .get(`${API_BASE_URL}/warehouse`)
       .then((response) => {
         setWarehouseList(response?.data?.data);
       })
